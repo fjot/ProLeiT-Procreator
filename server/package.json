@@ -1,0 +1,24 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "@types/gulp": "^4.0.6",
+    "gulp": "^4.0.0",
+    "gulp-html-replace": "^1.6.2",
+    "gulp-inject": "^5.0.2",
+    "gulp-inject-partials": "^1.0.5",
+    "gulp-replace": "^1.0.0",
+    "ts-node": "^8.0.3",
+    "typescript": "^3.4.1"
+  }
+}
