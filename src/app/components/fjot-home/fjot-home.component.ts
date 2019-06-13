@@ -10,63 +10,69 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 })
 export class FjotHomeComponent implements OnInit {
   constructor(private conf: ConfigService) { }
-  todos = [
-    {
-      name: 'Button',
-    },
-    {
-      name: 'DateTime Pickup',
-    },
-    {
-      name: 'Input',
-    },
-    {
-      name: 'Parraf',
-    }
-  ];
-
-  completed = [
-    {
-      name: 'Button',
-    },
-    {
-      name: 'DateTime Pickup',
-    },
-    {
-      name: 'Input',
-    },
-    {
-      name: 'Parraf',
-    }
-  ];
-
-
+ 
+  todos = [];
+  content = [];
+  text = [];
+  completed = [{button: 'Button'}];
+  contentList = [{dropdown: 'Dropdown'}]
+  textList = [{text: 'Text', subText: 'You can white here'}]
+                
   title: any;
   htmlObject: any;
   html: any;
-  isVisible = false;
+  isVisibleText = false;
+  isVisibleButton = false;
+  isVisibleDropdown = false;
   toasIsVisible = false;
   isCompilerProcess = false;
   isDeploymentProcess = false;
 
-  @ViewChild('clone') button: ElementRef;
-  @ViewChild('toastIs') toast: ElementRef;
-  @ViewChild('result') result: ElementRef;
+  // @ViewChild('clone') button: ElementRef;
+  // @ViewChild('toastIs') toast: ElementRef;
+  // @ViewChild('result') result: ElementRef;
 
 
   ngOnInit() {
-    this.title = 'button';
+   // this.completed[0].name = 'Button';
   }
 
   onDrop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data,
-        event.previousIndex,
-        event.currentIndex);
+      moveItemInArray(event.container.data, event.previousIndex,event.currentIndex);
+     
+     // this.contentList[0].push(event.container.data[0);
     } else {
       transferArrayItem(event.previousContainer.data,
         event.container.data,
         event.previousIndex, event.currentIndex);
+    }
+  }
+
+
+  selectedText(event: any) {
+    if(event) {
+      this.isVisibleText = true;
+      this.isVisibleButton = false;
+      this.isVisibleDropdown = false;
+     this.text[0].subText = '';
+    }
+  }
+
+  selectedButton(event: any) {
+    if(event) {
+      this.isVisibleText = false;
+      this.isVisibleButton = true;
+      this.isVisibleDropdown = false;
+      //this.todos.push(this.completed[0].name)
+    }
+  }
+
+  selectedDropdown(event: any) {
+    if(event) {
+      this.isVisibleText = false;
+      this.isVisibleButton = false;
+      this.isVisibleDropdown = true;
     }
   }
 
@@ -89,26 +95,25 @@ export class FjotHomeComponent implements OnInit {
 
   cancelButton() {
     this.toasIsVisible = false;
-    this.isVisible = true;
   }
 
 
-  setButton() {
-    const buttonSelected = this.button.nativeElement.lastChild;
-    const cln = buttonSelected.cloneNode(true);
-    const result = this.result.nativeElement;
-    // const resultHTML = result.appendChild(cln);
+  // setButton() {
+  //   const buttonSelected = this.button.nativeElement.lastChild;
+  //   const cln = buttonSelected.cloneNode(true);
+  //   const result = this.result.nativeElement;
+  //   // const resultHTML = result.appendChild(cln);
 
-    this.conf.createHtml();
+  //   this.conf.createHtml();
 
-    // add new element into DB
-    this.htmlObject = cln.outerHTML;
-    this.conf.addDataB(this.htmlObject);
+  //   // add new element into DB
+  //   this.htmlObject = cln.outerHTML;
+  //   this.conf.addDataB(this.htmlObject);
 
-    // this.conf.injectHtml();
-    this.toasIsVisible = true;
-    this.isVisible = true;
-  }
+  //   // this.conf.injectHtml();
+  //   this.toasIsVisible = true;
+  //   this.isVisible = true;
+  // }
 
   // getDataBaseObject() {
   //   this.conf.getByKey();

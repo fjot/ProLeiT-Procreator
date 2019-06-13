@@ -1,6 +1,6 @@
 <!-- <div class="container">
     <div class="row"> -->
-        <!-- <h3>Create your own button</h3>
+<!-- <h3>Create your own button</h3>
         <div class="main-div">
             <div class="div-html-element">
                 <div class="html-element-custom">
@@ -54,36 +54,137 @@
 
         </div> -->
 <div class="container-home">
-    <div class="column-container">
-        <p>Estamos comprobando</p>
-    <p>Config</p>
+    <div class="column-container-config">
+        <div class="secciones-title">
+            <p>CSS</p>
+            <hr>
+        </div>
+        <div class="html-element-custom" *ngIf="isVisibleText">
+            <span class="proporty-title">Text:</span> <input type="text" [(ngModel)]="text[0].text">
+            <span class="proporty-title">Font Size:</span> <input type="text" [(ngModel)]="sizeText">
+            <span class="proporty-title">Color:</span> <input type="text" [(ngModel)]="colorText">
+            <span class="proporty-title">Align:</span> <input type="text" [(ngModel)]="alignText">
+        </div>
+
+        <div class="html-element-custom" *ngIf="isVisibleButton">
+                <span class="proporty-title">Titel:</span> <input type="text" [(ngModel)]="todos[0].button">
+                <span class="proporty-title">Width:</span> <input type="text" [(ngModel)]="widthButton">
+                <span class="proporty-title">Height:</span> <input type="text" [(ngModel)]="heightButton">
+                <span class="proporty-title">Background-color:</span> <input type="text" [(ngModel)]="backgroundColorButton">
+                <span class="proporty-title">Border-radius:</span> <input type="text" [(ngModel)]="borderRadiusButton">
+                <span class="proporty-title">Color:</span> <input type="text" [(ngModel)]="colorButton">
+            </div>
+
+            <div class="html-element-custom" *ngIf="isVisibleDropdown">
+                    <span class="proporty-title">Titel:</span> <input type="text" [(ngModel)]="content[0].dropdown">
+                    <span class="proporty-title">Width:</span> <input type="text" [(ngModel)]="widthDropdown">
+                    <span class="proporty-title">Height:</span> <input type="text" [(ngModel)]="heightDropdown">
+                    <span class="proporty-title">Background-color:</span> <input type="text" [(ngModel)]="backgroundColorDropdown">
+                    <span class="proporty-title">Border-radius:</span> <input type="text" [(ngModel)]="borderRadiusDropdown">
+                    <span class="proporty-title">Color:</span> <input type="text" [(ngModel)]="colorDropdown">
+                </div>
+
     </div>
+
     <div class="column-container-done">
-        <div class="list" cdkDropList #todoList="cdkDropList" [cdkDropListData]="todos"
-            [cdkDropListConnectedTo]="[doneList]" (cdkDropListDropped)="onDrop($event)">
-        <p>Config</p>
-            <mat-card *ngFor="let todo of todos" cdkDrag>
-                <mat-card-header>
-                    <mat-card-title>{{todo.name}}</mat-card-title>
-                    <mat-card-subtitle>{{todo.category}}</mat-card-subtitle>
-                </mat-card-header>
-                
-            </mat-card>
+        <div class="smartphone-container ">
+            <div class="smartphone">
+                <!--Bottom from smartphone-->
+                <div class="layout-top">
+                    <div class="layout-top-element" cdkDropList #texto="cdkDropList" [cdkDropListData]="text"
+                    [cdkDropListConnectedTo]="[textoList]" (cdkDropListDropped)="onDrop($event)">
+                      <div class="p-text" *ngFor="let t of text" cdkDrag>
+                            <p (click)="selectedText($event)" [style.color]="colorText" [style.fontSize]="sizeText"  [style.textAlign]="alignText">{{t.text}}</p>
+                            <small>{{t.subText}}</small>
+                       </div>
+                    </div>
+                </div>
+
+                <!--Content from smartphone-->
+                <div class="layout-content">
+                        <div class="layout-content-element" cdkDropList #dropdown="cdkDropList"
+                            [cdkDropListData]="content" [cdkDropListConnectedTo]="[dropdownList]"
+                            (cdkDropListDropped)="onDrop($event)">
+                            <div class="p-dropdown" *ngFor="let cont of content" cdkDrag (click)="selectedDropdown($event)"
+                            [style.width]="widthDropdown" [style.height]="heightDropdown"
+                            [style.backgroundColor]="backgroundColorDropdown" [style.borderRadius]="borderRadiusDropdown"
+                            [style.color]="colorDropdown">
+                                    <span>{{cont.dropdown}}</span>
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                    <div class="p-dropdown-content">
+                                        <p>Value 1</p>
+                                        <p>Value 2</p>
+                                        <p>Value 3</p>
+                                        <p>Value 4</p>
+                                        <p>Value 5</p>
+                                    </div>
+                            </div>
+                        
+                        </div>
+                </div>
+
+                <!--Bottom from smartphone-->
+                <div class="layout-bottom">
+                    <div class="layout-bottom-element" cdkDropList #todoList="cdkDropList" [cdkDropListData]="todos"
+                        [cdkDropListConnectedTo]="[doneList]" (cdkDropListDropped)="onDrop($event)">
+                        <button class="p-button" [style.width]="widthButton" [style.height]="heightButton"
+                            [style.backgroundColor]="backgroundColorButton" [style.borderRadius]="borderRadiusButton"
+                            [style.color]="colorButton" *ngFor="let todo of todos" cdkDrag (click)="selectedButton($event)">
+                            <span class="mdc-button__label">{{todo.button}}</span>
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
     </div>
-    
+
+<!-- Component LIST-->
     <div class="column-container-component">
-        <div class="list" cdkDropList #doneList="cdkDropList" [cdkDropListData]="completed"
-            [cdkDropListConnectedTo]="todoList" (cdkDropListDropped)="onDrop($event)">
-            
-            <mat-card *ngFor="let complete of completed" cdkDrag>
-                <mat-card-header>
-                    <mat-card-title>{{complete.name}}</mat-card-title>
-                    <mat-card-subtitle>{{complete.category}}</mat-card-subtitle>
-                </mat-card-header>
-            </mat-card>
+        <div class="secciones-title">
+            <p>Components</p>
+            <hr>
         </div>
+        <ul class="column-container-content">
+             <!--Text-->
+            <li  cdkDropList #textoList="cdkDropList" [cdkDropListData]="textList"
+                [cdkDropListConnectedTo]="[texto]" (cdkDropListDropped)="onDrop($event)">
+               <div class="p-text" *ngFor="let t of textList" cdkDrag>
+                    <p >{{t.text}}</p>
+                    <small>{{t.subText}}</small>
+               </div>
+            </li> 
+           
+            <!--Button-->
+            <li  cdkDropList #doneList="cdkDropList" [cdkDropListData]="completed"
+                [cdkDropListConnectedTo]="[todoList]" (cdkDropListDropped)="onDrop($event)">
+                <button class="p-button" *ngFor="let complet of completed" cdkDrag>
+                    <span class="mdc-button__label">{{complet.button}}</span>
+                </button>
+            </li>
+
+            <!--Dropdown-->
+            <li  cdkDropList #dropdownList="cdkDropList" [cdkDropListData]="contentList"
+                [cdkDropListConnectedTo]="[dropdown]" (cdkDropListDropped)="onDrop($event)">
+                <div class="p-dropdown" *ngFor="let c of contentList" cdkDrag>
+                    <span>{{c.dropdown}}</span>
+                    <i class="material-icons">keyboard_arrow_down</i>
+                    <div class="p-dropdown-content">
+                        <p>Value 1</p>
+                        <p>Value 2</p>
+                        <p>Value 3</p>
+                        <p>Value 4</p>
+                        <p>Value 5</p>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+
+
+
+
     </div>
-</div>
     <!-- </div>
 </div> -->
