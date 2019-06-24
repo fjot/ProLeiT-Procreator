@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ConfigService } from '../../services/serverConnection';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDragEnter, CdkDragExit, moveItemInArray, transferArrayItem  } from '@angular/cdk/drag-drop';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -34,14 +34,12 @@ export class FjotHomeComponent implements OnInit {
 
 
   ngOnInit() {
-   // this.completed[0].name = 'Button';
+    console.log(this.textList.length)
   }
 
   onDrop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex,event.currentIndex);
-     
-     // this.contentList[0].push(event.container.data[0);
     } else {
       transferArrayItem(event.previousContainer.data,
         event.container.data,
@@ -49,7 +47,16 @@ export class FjotHomeComponent implements OnInit {
     }
   }
 
-
+  entered(event: CdkDragEnter<string[]>) {
+    console.log('Entered', event.item.data);
+   
+   }
+   exited(event: CdkDragExit<string[]>) {
+     if(this.textList.length === 1){
+       this.textList.push(this.textList[0]);
+     } 
+   }
+ 
   selectedText(event: any) {
     if(event) {
       this.isVisibleText = true;

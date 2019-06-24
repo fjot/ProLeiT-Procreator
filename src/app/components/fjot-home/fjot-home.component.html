@@ -92,10 +92,11 @@
                 <!--Bottom from smartphone-->
                 <div class="layout-top">
                     <div class="layout-top-element" cdkDropList #texto="cdkDropList" [cdkDropListData]="text"
-                    [cdkDropListConnectedTo]="[textoList]" (cdkDropListDropped)="onDrop($event)">
-                      <div class="p-text" *ngFor="let t of text" cdkDrag>
-                            <p (click)="selectedText($event)" [style.color]="colorText" [style.fontSize]="sizeText"  [style.textAlign]="alignText">{{t.text}}</p>
-                            <small>{{t.subText}}</small>
+                    [cdkDropListConnectedTo]="[textoList]"  (cdkDropListDropped)="onDrop($event)" (cdkDropListEntered)="entered($event)" 
+                    (cdkDropListExited)="exited($event)">
+                      <div class="p-text" *ngFor="let te of text" cdkDrag [cdkDragData]="te">
+                            <p (click)="selectedText($event)" [style.color]="colorText" [style.fontSize]="sizeText"  [style.textAlign]="alignText" >{{te.text}}</p>
+                            <small>{{te.subText}}</small>
                        </div>
                     </div>
                 </div>
@@ -149,8 +150,9 @@
         <ul class="column-container-content">
              <!--Text-->
             <li  cdkDropList #textoList="cdkDropList" [cdkDropListData]="textList"
-                [cdkDropListConnectedTo]="[texto]" (cdkDropListDropped)="onDrop($event)">
-               <div class="p-text" *ngFor="let t of textList" cdkDrag>
+                [cdkDropListConnectedTo]="[texto]" (cdkDropListDropped)="onDrop($event)" (cdkDropListEntered)="entered($event)" 
+                (cdkDropListExited)="exited($event)">
+               <div class="p-text" *ngFor="let t of textList" cdkDrag [cdkDragData]="t">
                     <p >{{t.text}}</p>
                     <small>{{t.subText}}</small>
                </div>
