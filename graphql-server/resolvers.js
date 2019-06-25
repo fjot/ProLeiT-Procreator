@@ -4,10 +4,19 @@ const batchesData = new BatchesData();
 const transfersData =  new TransferData();
 
 module.exports = {
-    batches: () => {
-        return batchesData.findAll();
+    getBatches: () => {
+          return batchesData.findAll()
     },
+
+    getBatch: (args) => {
+        return batchesData.findBatch(args)
+    } ,
+
     transfers: () => {
         return transfersData.findAll();
     }
-}
+
+};
+
+    
+  

@@ -1,10 +1,14 @@
 var { buildSchema } = require('graphql');
 
+// ! mark make the parameter Non-Null
+
 module.exports = buildSchema(`
     type Query {
-        batches: [Batches],
-        transfers: [Transfer]
+        getBatches: [Batches],
+        getBatch(name: String!): [Batches], 
+        transfers: [Transfer]   
     }
+
     type Batches {
         _Key: Float,
         TotalOutflow: Float,
@@ -117,4 +121,6 @@ module.exports = buildSchema(`
         _Xu_TransferTypeKey: Float,
         _XuComment: String
     }
+
+  
 `);
