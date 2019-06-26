@@ -1,7 +1,5 @@
 var { buildSchema } = require('graphql');
 
-// ! mark make the parameter Non-Null
-
 module.exports = buildSchema(`
     type Query {
         getBatches: [Batches],

@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule} from '@angular/material/button';
 import { FjotNavComponent } from './components/fjot-nav/fjot-nav.component';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FjotNavComponent } from './components/fjot-nav/fjot-nav.component';
     DragDropModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    GraphQLModule
   ],
   providers: [],
   bootstrap: [AppComponent]

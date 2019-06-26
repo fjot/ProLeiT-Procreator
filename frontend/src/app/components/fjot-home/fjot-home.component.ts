@@ -1,6 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ConfigService } from '../../services/serverConnection';
+import { BatchesGQL } from '../../services/graphqlConnection';
 import { CdkDragDrop, CdkDragEnter, CdkDragExit, moveItemInArray, transferArrayItem  } from '@angular/cdk/drag-drop';
+import { Batches } from 'src/app/graphql';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -9,6 +11,7 @@ import { CdkDragDrop, CdkDragEnter, CdkDragExit, moveItemInArray, transferArrayI
   styleUrls: ['./fjot-home.component.scss']
 })
 export class FjotHomeComponent implements OnInit {
+  batches: Observable<Batches.Query>;
   constructor(private conf: ConfigService) { }
  
   todos = [];
@@ -34,7 +37,7 @@ export class FjotHomeComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.textList.length)
+    console.log(this.textList.length);
   }
 
   onDrop(event: CdkDragDrop<string[]>) {
