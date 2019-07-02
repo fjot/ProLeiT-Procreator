@@ -1,8 +1,24 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { ConfigService } from '../../services/serverConnection';
 import { BatchesGQL } from '../../services/graphqlConnection';
 import { CdkDragDrop, CdkDragEnter, CdkDragExit, moveItemInArray, transferArrayItem  } from '@angular/cdk/drag-drop';
 import { Batches } from 'src/app/graphql';
+
+import gql from 'graphql-tag';
+import {Apollo} from 'apollo-angular';
+import { Subscription } from 'apollo-client/util/Observable';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import { HttpHeaders } from '@angular/common/http';
+
+
+const GET_BATCHES = gql`
+ query  {
+    getBatches {
+      _Name
+    }
+}
+`;
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -10,9 +26,11 @@ import { Batches } from 'src/app/graphql';
   templateUrl: './fjot-home.component.html',
   styleUrls: ['./fjot-home.component.scss']
 })
-export class FjotHomeComponent implements OnInit {
-  batches: Observable<Batches.Query>;
-  constructor(private conf: ConfigService) { }
+export class FjotHomeComponent implements OnInit, OnDestroy {
+  //batches: Observable<Batches.Query>;
+  getBatches: Observable<any>;
+  constructor(private conf: ConfigService, 
+            private apollo: Apollo) { }
  
   todos = [];
   content = [];
@@ -35,10 +53,20 @@ export class FjotHomeComponent implements OnInit {
   // @ViewChild('toastIs') toast: ElementRef;
   // @ViewChild('result') result: ElementRef;
 
+  private querySubscription: Subscription;
 
   ngOnInit() {
-    console.log(this.textList.length);
-  }
+    this.getBatches = this.apollo
+    .watchQuery({
+      query: GET_BATCHES,
+    })
+    .valueChanges.pipe(map(result => result.data.getBatches));
+}
+
+ngOnDestroy() {
+  this.querySubscription.unsubscribe();
+}
+  
 
   onDrop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {

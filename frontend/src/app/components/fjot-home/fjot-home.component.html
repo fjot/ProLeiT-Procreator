@@ -84,9 +84,16 @@
                     <span class="proporty-title">Color:</span> <input type="text" [(ngModel)]="colorDropdown">
                 </div>
 
+                <div>       <ul>
+                        <li *ngFor="let batch of getBatches | async">
+                          {{batch._Name}}
+                        </li>
+                      </ul></div>
+
     </div>
 
     <div class="column-container-done">
+         
         <div class="smartphone-container ">
             <div class="smartphone">
                 <!--Bottom from smartphone-->
@@ -136,7 +143,7 @@
                     </div>
                 </div>
 
-
+         
             </div>
         </div>
     </div>
