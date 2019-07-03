@@ -1,3 +1,5 @@
+
+export const GET_BATCHES = gql`
 query  {
   getBatches {
     _Key
@@ -33,4 +35,6 @@ query  {
     ProcessEndTime
     ProcessStartTime
   }
-}
+}`;
+
+

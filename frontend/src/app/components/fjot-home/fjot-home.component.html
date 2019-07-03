@@ -83,13 +83,6 @@
                     <span class="proporty-title">Border-radius:</span> <input type="text" [(ngModel)]="borderRadiusDropdown">
                     <span class="proporty-title">Color:</span> <input type="text" [(ngModel)]="colorDropdown">
                 </div>
-
-                <div>       <ul>
-                        <li *ngFor="let batch of getBatches | async">
-                          {{batch._Name}}
-                        </li>
-                      </ul></div>
-
     </div>
 
     <div class="column-container-done">
@@ -120,11 +113,7 @@
                                     <span>{{cont.dropdown}}</span>
                                     <i class="material-icons">keyboard_arrow_down</i>
                                     <div class="p-dropdown-content">
-                                        <p>Value 1</p>
-                                        <p>Value 2</p>
-                                        <p>Value 3</p>
-                                        <p>Value 4</p>
-                                        <p>Value 5</p>
+                                        <p *ngFor="let batch of getBatches | async">{{batch._Name}}</p>
                                     </div>
                             </div>
                         
@@ -180,12 +169,8 @@
                     <span>{{c.dropdown}}</span>
                     <i class="material-icons">keyboard_arrow_down</i>
                     <div class="p-dropdown-content">
-                        <p>Value 1</p>
-                        <p>Value 2</p>
-                        <p>Value 3</p>
-                        <p>Value 4</p>
-                        <p>Value 5</p>
-                    </div>
+                            <p *ngFor="let batch of getBatches | async">{{batch._Name}}</p>
+                        </div>
                 </div>
             </li>
 

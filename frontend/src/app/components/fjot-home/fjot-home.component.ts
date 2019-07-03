@@ -1,15 +1,12 @@
-import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ConfigService } from '../../services/serverConnection';
-import { BatchesGQL } from '../../services/graphqlConnection';
 import { CdkDragDrop, CdkDragEnter, CdkDragExit, moveItemInArray, transferArrayItem  } from '@angular/cdk/drag-drop';
-import { Batches } from 'src/app/graphql';
+
 
 import gql from 'graphql-tag';
 import {Apollo} from 'apollo-angular';
-import { Subscription } from 'apollo-client/util/Observable';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import { HttpHeaders } from '@angular/common/http';
 
 
 const GET_BATCHES = gql`
@@ -17,8 +14,7 @@ const GET_BATCHES = gql`
     getBatches {
       _Name
     }
-}
-`;
+}`;
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -28,6 +24,7 @@ const GET_BATCHES = gql`
 })
 export class FjotHomeComponent implements OnInit, OnDestroy {
   //batches: Observable<Batches.Query>;
+
   getBatches: Observable<any>;
   constructor(private conf: ConfigService, 
             private apollo: Apollo) { }
@@ -53,18 +50,18 @@ export class FjotHomeComponent implements OnInit, OnDestroy {
   // @ViewChild('toastIs') toast: ElementRef;
   // @ViewChild('result') result: ElementRef;
 
-  private querySubscription: Subscription;
+
 
   ngOnInit() {
     this.getBatches = this.apollo
-    .watchQuery({
+    .watchQuery<any>({
       query: GET_BATCHES,
     })
     .valueChanges.pipe(map(result => result.data.getBatches));
 }
 
 ngOnDestroy() {
-  this.querySubscription.unsubscribe();
+
 }
   
 
