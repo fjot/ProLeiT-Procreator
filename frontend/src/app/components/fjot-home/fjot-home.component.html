@@ -54,6 +54,147 @@
 
         </div> -->
 <div class="container-home">
+
+    <div class="column-container-component">
+        <div class="secciones-title">
+            <p>Components</p>
+            <hr>
+        </div>
+        <ul class="column-container-content">
+            <div>
+                <div style="display: flex; flex-direction: row; padding: 10px;" (click)="setDropdownList()">
+                    <button #dropdownList class="dropdown-btn">Text</button> 
+                    <i class="material-icons">expand_more</i>
+                </div>
+
+                <div #dropdownContainer [style.display]="isVisibleDropdownContainer" class="dropdown-container">
+                    <div class="text-container" cdkDropList #textoList="cdkDropList" [cdkDropListData]="textList"
+                        [cdkDropListConnectedTo]="[texto]" (cdkDropListDropped)="onDrop($event)"
+                        (cdkDropListEntered)="entered($event)" (cdkDropListExited)="exited($event)">
+                        <div *ngFor="let t of textList" cdkDrag [cdkDragData]="t">
+                            <h1>Heading 1</h1>
+                        </div>
+                    </div>
+                </div>
+                <div #dropdownContainer [style.display]="isVisibleDropdownContainer" class="dropdown-container">
+                    <div class="text-container" cdkDropList #textoList="cdkDropList" [cdkDropListData]="textList"
+                        [cdkDropListConnectedTo]="[texto]" (cdkDropListDropped)="onDrop($event)"
+                        (cdkDropListEntered)="entered($event)" (cdkDropListExited)="exited($event)">
+                        <div *ngFor="let t of textList" cdkDrag [cdkDragData]="t">
+                            <h2>Heading 2</h2>
+                        </div>
+                    </div>
+
+                </div>
+                <div #dropdownContainer [style.display]="isVisibleDropdownContainer" class="dropdown-container">
+                    <div class="text-container" cdkDropList #textoList="cdkDropList" [cdkDropListData]="textList"
+                        [cdkDropListConnectedTo]="[texto]" (cdkDropListDropped)="onDrop($event)"
+                        (cdkDropListEntered)="entered($event)" (cdkDropListExited)="exited($event)">
+                        <div *ngFor="let t of textList" cdkDrag [cdkDragData]="t">
+                            <h3>Heading 3</h3>
+                        </div>
+                    </div>
+
+                </div>
+                <div #dropdownContainer [style.display]="isVisibleDropdownContainer" class="dropdown-container">
+                    <div class="text-container" cdkDropList #textoList="cdkDropList" [cdkDropListData]="textList"
+                        [cdkDropListConnectedTo]="[texto]" (cdkDropListDropped)="onDrop($event)"
+                        (cdkDropListEntered)="entered($event)" (cdkDropListExited)="exited($event)">
+                        <div *ngFor="let t of textList" cdkDrag [cdkDragData]="t">
+                            <p>Parragraph</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!--Text-->
+
+
+            <!--Button-->
+            <div>
+                    <div style="display: flex; flex-direction: row; padding: 10px;" (click)="setDropdownList()">
+                            <button #dropdownList class="dropdown-btn">Buttons</button> 
+                            <i class="material-icons">expand_more</i>
+                        </div>
+                    <div cdkDropList #doneList="cdkDropList" [style.display]="isVisibleDropdownContainer" class="dropdown-container" [cdkDropListData]="completed" [cdkDropListConnectedTo]="[todoList]"
+                        (cdkDropListDropped)="onDrop($event)">
+                        <div *ngFor="let complet of completed" cdkDrag>
+                            <p>Primary Button</p>
+                        </div>
+                    </div>
+            </div>
+        
+
+            <!--Dropdown-->
+            <li cdkDropList #dropdownList="cdkDropList" [cdkDropListData]="contentList"
+                [cdkDropListConnectedTo]="[dropdown]" (cdkDropListDropped)="onDrop($event)">
+                <div *ngFor="let c of contentList" cdkDrag>
+                    <p>dropdown</p>
+                    <!-- <span>{{c.dropdown}}</span>
+                            <i class="material-icons">keyboard_arrow_down</i>
+                            <div class="p-dropdown-content">
+                                    <p *ngFor="let batch of getBatches | async">{{batch._Name}}</p>
+                                </div> -->
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
+
+    <div class="column-container-done">
+        <div class="smartphone-container ">
+            <div class="smartphone">
+                <!--Bottom from smartphone-->
+                <div class="layout-top">
+                    <div class="layout-top-element" cdkDropList #texto="cdkDropList" [cdkDropListData]="text"
+                        [cdkDropListConnectedTo]="[textoList]" (cdkDropListDropped)="onDrop($event)"
+                        (cdkDropListEntered)="entered($event)" (cdkDropListExited)="exited($event)">
+                        <div class="p-text" *ngFor="let te of text" cdkDrag [cdkDragData]="te">
+                            <p (click)="selectedText($event)" [style.color]="colorText" [style.fontSize]="sizeText"
+                                [style.textAlign]="alignText">{{te.text}}</p>
+                            <small>{{te.subText}}</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Content from smartphone-->
+                <div class="layout-content">
+                    <div class="layout-content-element" cdkDropList #dropdown="cdkDropList" [cdkDropListData]="content"
+                        [cdkDropListConnectedTo]="[dropdownList]" (cdkDropListDropped)="onDrop($event)">
+                        <div class="p-dropdown" *ngFor="let cont of content" cdkDrag (click)="selectedDropdown($event)"
+                            [style.width]="widthDropdown" [style.height]="heightDropdown"
+                            [style.backgroundColor]="backgroundColorDropdown"
+                            [style.borderRadius]="borderRadiusDropdown" [style.color]="colorDropdown">
+                            <span>{{cont.dropdown}}</span>
+                            <i class="material-icons">keyboard_arrow_down</i>
+                            <div class="p-dropdown-content">
+                                <p *ngFor="let batch of getBatches | async">{{batch._Name}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!--Bottom from smartphone-->
+                <div class="layout-bottom">
+                    <div class="layout-bottom-element" cdkDropList #todoList="cdkDropList" [cdkDropListData]="todos"
+                        [cdkDropListConnectedTo]="[doneList]" (cdkDropListDropped)="onDrop($event)">
+                        <button class="p-button" [style.width]="widthButton" [style.height]="heightButton"
+                            [style.backgroundColor]="backgroundColorButton" [style.borderRadius]="borderRadiusButton"
+                            [style.color]="colorButton" *ngFor="let todo of todos" cdkDrag
+                            (click)="selectedButton($event)">
+                            <span class="mdc-button__label">{{todo.button}}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="column-container-config">
         <div class="secciones-title">
             <p>CSS</p>
@@ -67,118 +208,23 @@
         </div>
 
         <div class="html-element-custom" *ngIf="isVisibleButton">
-                <span class="proporty-title">Titel:</span> <input type="text" [(ngModel)]="todos[0].button">
-                <span class="proporty-title">Width:</span> <input type="text" [(ngModel)]="widthButton">
-                <span class="proporty-title">Height:</span> <input type="text" [(ngModel)]="heightButton">
-                <span class="proporty-title">Background-color:</span> <input type="text" [(ngModel)]="backgroundColorButton">
-                <span class="proporty-title">Border-radius:</span> <input type="text" [(ngModel)]="borderRadiusButton">
-                <span class="proporty-title">Color:</span> <input type="text" [(ngModel)]="colorButton">
-            </div>
+            <span class="proporty-title">Titel:</span> <input type="text" [(ngModel)]="todos[0].button">
+            <span class="proporty-title">Width:</span> <input type="text" [(ngModel)]="widthButton">
+            <span class="proporty-title">Height:</span> <input type="text" [(ngModel)]="heightButton">
+            <span class="proporty-title">Background-color:</span> <input type="text"
+                [(ngModel)]="backgroundColorButton">
+            <span class="proporty-title">Border-radius:</span> <input type="text" [(ngModel)]="borderRadiusButton">
+            <span class="proporty-title">Color:</span> <input type="text" [(ngModel)]="colorButton">
+        </div>
 
-            <div class="html-element-custom" *ngIf="isVisibleDropdown">
-                    <span class="proporty-title">Titel:</span> <input type="text" [(ngModel)]="content[0].dropdown">
-                    <span class="proporty-title">Width:</span> <input type="text" [(ngModel)]="widthDropdown">
-                    <span class="proporty-title">Height:</span> <input type="text" [(ngModel)]="heightDropdown">
-                    <span class="proporty-title">Background-color:</span> <input type="text" [(ngModel)]="backgroundColorDropdown">
-                    <span class="proporty-title">Border-radius:</span> <input type="text" [(ngModel)]="borderRadiusDropdown">
-                    <span class="proporty-title">Color:</span> <input type="text" [(ngModel)]="colorDropdown">
-                </div>
-    </div>
-
-    <div class="column-container-done">
-         
-        <div class="smartphone-container ">
-            <div class="smartphone">
-                <!--Bottom from smartphone-->
-                <div class="layout-top">
-                    <div class="layout-top-element" cdkDropList #texto="cdkDropList" [cdkDropListData]="text"
-                    [cdkDropListConnectedTo]="[textoList]"  (cdkDropListDropped)="onDrop($event)" (cdkDropListEntered)="entered($event)" 
-                    (cdkDropListExited)="exited($event)">
-                      <div class="p-text" *ngFor="let te of text" cdkDrag [cdkDragData]="te">
-                            <p (click)="selectedText($event)" [style.color]="colorText" [style.fontSize]="sizeText"  [style.textAlign]="alignText" >{{te.text}}</p>
-                            <small>{{te.subText}}</small>
-                       </div>
-                    </div>
-                </div>
-
-                <!--Content from smartphone-->
-                <div class="layout-content">
-                        <div class="layout-content-element" cdkDropList #dropdown="cdkDropList"
-                            [cdkDropListData]="content" [cdkDropListConnectedTo]="[dropdownList]"
-                            (cdkDropListDropped)="onDrop($event)">
-                            <div class="p-dropdown" *ngFor="let cont of content" cdkDrag (click)="selectedDropdown($event)"
-                            [style.width]="widthDropdown" [style.height]="heightDropdown"
-                            [style.backgroundColor]="backgroundColorDropdown" [style.borderRadius]="borderRadiusDropdown"
-                            [style.color]="colorDropdown">
-                                    <span>{{cont.dropdown}}</span>
-                                    <i class="material-icons">keyboard_arrow_down</i>
-                                    <div class="p-dropdown-content">
-                                        <p *ngFor="let batch of getBatches | async">{{batch._Name}}</p>
-                                    </div>
-                            </div>
-                        
-                        </div>
-                </div>
-
-                <!--Bottom from smartphone-->
-                <div class="layout-bottom">
-                    <div class="layout-bottom-element" cdkDropList #todoList="cdkDropList" [cdkDropListData]="todos"
-                        [cdkDropListConnectedTo]="[doneList]" (cdkDropListDropped)="onDrop($event)">
-                        <button class="p-button" [style.width]="widthButton" [style.height]="heightButton"
-                            [style.backgroundColor]="backgroundColorButton" [style.borderRadius]="borderRadiusButton"
-                            [style.color]="colorButton" *ngFor="let todo of todos" cdkDrag (click)="selectedButton($event)">
-                            <span class="mdc-button__label">{{todo.button}}</span>
-                        </button>
-                    </div>
-                </div>
-
-         
-            </div>
+        <div class="html-element-custom" *ngIf="isVisibleDropdown">
+            <span class="proporty-title">Titel:</span> <input type="text" [(ngModel)]="content[0].dropdown">
+            <span class="proporty-title">Width:</span> <input type="text" [(ngModel)]="widthDropdown">
+            <span class="proporty-title">Height:</span> <input type="text" [(ngModel)]="heightDropdown">
+            <span class="proporty-title">Background-color:</span> <input type="text"
+                [(ngModel)]="backgroundColorDropdown">
+            <span class="proporty-title">Border-radius:</span> <input type="text" [(ngModel)]="borderRadiusDropdown">
+            <span class="proporty-title">Color:</span> <input type="text" [(ngModel)]="colorDropdown">
         </div>
     </div>
-
-<!-- Component LIST-->
-    <div class="column-container-component">
-        <div class="secciones-title">
-            <p>Components</p>
-            <hr>
-        </div>
-        <ul class="column-container-content">
-             <!--Text-->
-            <li  cdkDropList #textoList="cdkDropList" [cdkDropListData]="textList"
-                [cdkDropListConnectedTo]="[texto]" (cdkDropListDropped)="onDrop($event)" (cdkDropListEntered)="entered($event)" 
-                (cdkDropListExited)="exited($event)">
-               <div class="p-text" *ngFor="let t of textList" cdkDrag [cdkDragData]="t">
-                    <p >{{t.text}}</p>
-                    <small>{{t.subText}}</small>
-               </div>
-            </li> 
-           
-            <!--Button-->
-            <li  cdkDropList #doneList="cdkDropList" [cdkDropListData]="completed"
-                [cdkDropListConnectedTo]="[todoList]" (cdkDropListDropped)="onDrop($event)">
-                <button class="p-button" *ngFor="let complet of completed" cdkDrag>
-                    <span class="mdc-button__label">{{complet.button}}</span>
-                </button>
-            </li>
-
-            <!--Dropdown-->
-            <li  cdkDropList #dropdownList="cdkDropList" [cdkDropListData]="contentList"
-                [cdkDropListConnectedTo]="[dropdown]" (cdkDropListDropped)="onDrop($event)">
-                <div class="p-dropdown" *ngFor="let c of contentList" cdkDrag>
-                    <span>{{c.dropdown}}</span>
-                    <i class="material-icons">keyboard_arrow_down</i>
-                    <div class="p-dropdown-content">
-                            <p *ngFor="let batch of getBatches | async">{{batch._Name}}</p>
-                        </div>
-                </div>
-            </li>
-
-        </ul>
-
-
-
-
-    </div>
-    <!-- </div>
-</div> -->
+</div>

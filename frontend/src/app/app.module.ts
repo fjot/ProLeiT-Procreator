@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule} from '@angular/material/button';
 import { FjotNavComponent } from './components/fjot-nav/fjot-nav.component';
 import { GraphQLModule } from './graphql.module';
+// import { NbEvaIconsModule } from '@nebular/eva-icons';
+// import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,10 @@ import { GraphQLModule } from './graphql.module';
     BrowserAnimationsModule,
     MatCardModule,
     MatButtonModule,
-    GraphQLModule
+    GraphQLModule,
+    // NbEvaIconsModule,
+    // NbThemeModule.forRoot({ name: 'default' }),
+    // NbLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

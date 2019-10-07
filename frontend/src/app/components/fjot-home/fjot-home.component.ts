@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { ConfigService } from '../../services/serverConnection';
 import { CdkDragDrop, CdkDragEnter, CdkDragExit, moveItemInArray, transferArrayItem  } from '@angular/cdk/drag-drop';
 
@@ -26,6 +26,8 @@ export class FjotHomeComponent implements OnInit, OnDestroy {
   //batches: Observable<Batches.Query>;
 
   getBatches: Observable<any>;
+  dropdown: any;
+  isVisibleDropdownContainer: string;
   constructor(private conf: ConfigService, 
             private apollo: Apollo) { }
  
@@ -50,9 +52,13 @@ export class FjotHomeComponent implements OnInit, OnDestroy {
   // @ViewChild('toastIs') toast: ElementRef;
   // @ViewChild('result') result: ElementRef;
 
+  @ViewChild('dropdownList', {static: false}) dropdownList: ElementRef;
+  @ViewChild('dropdownContainer', {static: false}) dropdownContainer: ElementRef;
+
 
 
   ngOnInit() {
+   this.isVisibleDropdownContainer = 'none';
     this.getBatches = this.apollo
     .watchQuery<any>({
       query: GET_BATCHES,
@@ -63,6 +69,16 @@ export class FjotHomeComponent implements OnInit, OnDestroy {
 ngOnDestroy() {
 
 }
+
+setDropdownList(){
+
+  if ( this.isVisibleDropdownContainer === 'flex') {
+    this.isVisibleDropdownContainer = 'none';
+  } else {
+    this.isVisibleDropdownContainer = 'flex';
+  }
+}
+
   
 
   onDrop(event: CdkDragDrop<string[]>) {
