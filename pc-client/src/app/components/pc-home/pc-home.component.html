@@ -1,0 +1,221 @@
+<pc-nav></pc-nav>
+<div class="container-home">
+    <div class="column-container-component">
+        <div class="secciones-title">
+            <p>Pages</p>
+        </div>
+        <div class="secciones-title">
+            <p>Components Library</p>
+        </div>
+        <ul class="column-container-content">
+            <!-- Navigation Bar -->
+
+         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+            <div>
+                <div style="display: flex; flex-direction: row; padding: 10px;" (click)="setDropdownList()">
+                    <!-- <i class="material-icons" style="color: white">keyboard_arrow_right</i> -->
+                    <i class="material-icons" style="color: white">keyboard_arrow_down</i>
+                    <button #dropdown class="dropdown-btn">Navigation Bar</button>
+                </div>
+                <div #dropdownContainer [style.display]="isVisibleDropdownContainer" class="dropdown-container">
+                        <div class="text-container" 
+                        id="dropListBasic"
+                        cdkDropList #navigationName="cdkDropList" 
+                        [cdkDropListData]="navigation"
+                        [cdkDropListConnectedTo]="[navigationCopyName]" 
+                        (cdkDropListDropped)="onDrop($event)"
+                        (cdkDropListEntered)="entered($event)" 
+                        (cdkDropListExited)="exited($event)">
+                        <div *ngFor="let item of navigation" cdkDrag [cdkDragData]="basic">
+                            <p>Basic</p>
+                        </div>
+                    </div>
+                </div>
+                <div #dropdownContainer [style.display]="isVisibleDropdownContainer" class="dropdown-container">
+                        <div class="text-container" 
+                        id="dropListHeader"
+                        cdkDropList #navigationHeaderName="cdkDropList" 
+                        [cdkDropListData]="navigationHeader"
+                        [cdkDropListConnectedTo]="[navigationHeaderCopyName]" 
+                        (cdkDropListDropped)="onDrop($event)"
+                        (cdkDropListEntered)="entered($event)" 
+                        (cdkDropListExited)="exited($event)">
+                            <div *ngFor="let item of navigationHeader" cdkDrag [cdkDragData]="header">
+                                <p>Header</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+            <!-- Header -->
+
+            
+            
+
+
+            <!--Table-->
+
+
+            <!--Button-->
+            <!-- <div>
+                <div style="display: flex; flex-direction: row; padding: 10px;" (click)="setDropdownList()">
+                    <button #dropdownList class="dropdown-btn">Buttons</button>
+                    <i class="material-icons">expand_more</i>
+                </div>
+                <div cdkDropList #doneList="cdkDropList" [style.display]="isVisibleDropdownContainer"
+                    class="dropdown-container" [cdkDropListData]="completed" [cdkDropListConnectedTo]="[todoList]"
+                    (cdkDropListDropped)="onDrop($event)">
+                    <div *ngFor="let complet of completed" cdkDrag>
+                        <p>Primary Button</p>
+                    </div>
+                </div>
+            </div> -->
+
+
+            <!--Dropdown-->
+            <!-- <li cdkDropList #dropdownList="cdkDropList" [cdkDropListData]="contentList"
+                [cdkDropListConnectedTo]="[dropdown]" (cdkDropListDropped)="onDrop($event)">
+                <div *ngFor="let c of contentList" cdkDrag>
+                    <p>dropdown</p>
+                     <span>{{c.dropdown}}</span>
+                            <i class="material-icons">keyboard_arrow_down</i>
+                            <div class="p-dropdown-content">
+                                    <p *ngFor="let batch of getBatches | async">{{batch._Name}}</p>
+                                </div> 
+                </div>
+            </li> -->
+        </ul>
+    </div>
+
+
+    <div class="column-container-creator">
+        <div class="menu-buttons">
+            <ul class="menu-button">
+                <li class="menu-item">
+                    <a class="menu-link"><i class="material-icons">save</i></a>
+                </li>
+                <li class="menu-item" (click)="copy()">
+                    <a class="menu-link"><i class="material-icons">backup</i></a>
+                </li>
+            </ul>
+        </div>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+        <!-- * * * * * * * * * * * Start Smartphne container * * * * * * * -->
+        <div class="smartphone-container ">
+            <body>
+                <div class="smartphone">
+                    <div class="status-bar">
+                        <p>Status Bar</p>
+                    </div>
+                    <div class="navigation-bar" 
+                        cdkDropList #navigationCopyName="cdkDropList"
+                        [cdkDropListData]="navigationCopy" 
+                        [cdkDropListConnectedTo]="[navigationName]"
+                        (cdkDropListDropped)="onDrop($event)" 
+                        (cdkDropListEntered)="entered($event)"
+                        (cdkDropListExited)="exited($event)">
+                        <p *ngIf="isVisibleTextBar">Navigation Bar</p>
+                        <div *ngFor="let item of navigationCopy" cdkDrag [cdkDragData]="basic">
+                            <pc-navigation [title]='item.title' (click)="selectedNavigation($event)"></pc-navigation>
+                        </div>
+                    </div>
+
+                    <div class="navigation-header" 
+                    cdkDropList #navigationHeaderCopyName="cdkDropList"
+                    [cdkDropListData]="navigationHeaderCopy" 
+                    [cdkDropListConnectedTo]="[navigationHeaderName]"
+                    (cdkDropListDropped)="onDrop($event)" 
+                    (cdkDropListEntered)="entered($event)"
+                    (cdkDropListExited)="exited($event)">
+                    <p *ngIf="isVisibleHeaderText">Header (optional)</p>
+                    <div *ngFor="let item of navigationHeaderCopy" cdkDrag [cdkDragData]="header">
+                        <pc-header [title]='item.title' (click)="selectedHeader($event)"></pc-header>
+                    </div>
+                </div>
+
+
+                    <!--Content from smartphone-->
+                    <!-- <div class="layout-content">
+                    <div class="layout-content-element" cdkDropList #dropdown="cdkDropList" [cdkDropListData]="content"
+                        [cdkDropListConnectedTo]="[dropdownList]" (cdkDropListDropped)="onDrop($event)">
+                        <div class="p-dropdown" *ngFor="let cont of content" cdkDrag (click)="selectedDropdown($event)"
+                            [style.width]="widthDropdown" [style.height]="heightDropdown"
+                            [style.backgroundColor]="backgroundColorDropdown"
+                            [style.borderRadius]="borderRadiusDropdown" [style.color]="colorDropdown">
+                            <span>{{cont.dropdown}}</span>
+                            <i class="material-icons">keyboard_arrow_down</i>
+                            <div class="p-dropdown-content">
+                                <p *ngFor="let batch of getBatches | async">{{batch._Name}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div> -->
+
+                    <!--Bottom from smartphone-->
+                    <!-- <div class="layout-bottom">
+                    <div class="layout-bottom-element" cdkDropList #todoList="cdkDropList" [cdkDropListData]="todos"
+                        [cdkDropListConnectedTo]="[doneList]" (cdkDropListDropped)="onDrop($event)">
+                        <button class="p-button" [style.width]="widthButton" [style.height]="heightButton"
+                            [style.backgroundColor]="backgroundColorButton" [style.borderRadius]="borderRadiusButton"
+                            [style.color]="colorButton" *ngFor="let todo of todos" cdkDrag
+                            (click)="selectedButton($event)">
+                            <span class="mdc-button__label">{{todo.button}}</span>
+                        </button>
+                    </div>
+                </div> -->
+                </div>
+            </body>
+        </div>
+
+       <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+        <!-- * * * * * * * * * * * * End container * * * * * * * * * * * * -->
+         <!-- * * * * * * * * * * * * * * * * * * * * * * * * ** * * * * * -->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+    </div>
+
+
+    <div class="column-container-config">
+        <div class="secciones-title">
+            <p>Style</p>
+        </div>
+        <div class="html-element-custom" *ngIf="isVisibleText">
+            <span class="proporty-title">Text:</span> <input type="text" [(ngModel)]="navigationCopy[0].title">
+        </div>
+
+        <div class="html-element-custom" *ngIf="isVisibleHeader">
+                <span class="proporty-title">Text:</span> <input type="text" [(ngModel)]="navigationHeaderCopy[0].title">
+            </div>
+    
+
+        <div class="html-element-custom" *ngIf="isVisibleButton">
+            <span class="proporty-title">Text:</span> <input type="text" [(ngModel)]="todos[0].button">
+            <span class="proporty-title">Width:</span> <input type="text" [(ngModel)]="widthButton">
+            <span class="proporty-title">Height:</span> <input type="text" [(ngModel)]="heightButton">
+            <span class="proporty-title">Background-color:</span> <input type="text"
+                [(ngModel)]="backgroundColorButton">
+            <span class="proporty-title">Border-radius:</span> <input type="text" [(ngModel)]="borderRadiusButton">
+            <span class="proporty-title">Color:</span> <input type="text" [(ngModel)]="colorButton">
+        </div>
+
+        <div class="html-element-custom" *ngIf="isVisibleDropdown">
+            <span class="proporty-title">Text:</span> <input type="text" [(ngModel)]="content[0].dropdown">
+            <span class="proporty-title">Width:</span> <input type="text" [(ngModel)]="widthDropdown">
+            <span class="proporty-title">Height:</span> <input type="text" [(ngModel)]="heightDropdown">
+            <span class="proporty-title">Background-color:</span> <input type="text"
+                [(ngModel)]="backgroundColorDropdown">
+            <span class="proporty-title">Border-radius:</span> <input type="text" [(ngModel)]="borderRadiusDropdown">
+            <span class="proporty-title">Color:</span> <input type="text" [(ngModel)]="colorDropdown">
+        </div>
+    </div>
+</div>
