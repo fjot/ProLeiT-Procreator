@@ -4,21 +4,25 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FjotHomeComponent } from './components/fjot-home/fjot-home.component';
+import { PcHomeComponent } from './components/pc-home/pc-home.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatCardModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule} from '@angular/material/button';
-import { FjotNavComponent } from './components/fjot-nav/fjot-nav.component';
+import { PcNavComponent } from './components/pc-nav/pc-nav.component';
 import { GraphQLModule } from './graphql.module';
+import { PcLoginComponent } from './components/pc-login/pc-login.component';
+import { PcAccountComponent } from './components/pc-account/pc-account.component';
 // import { NbEvaIconsModule } from '@nebular/eva-icons';
 // import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FjotHomeComponent,
-    FjotNavComponent
+    PcHomeComponent,
+    PcNavComponent,
+    PcLoginComponent,
+    PcAccountComponent
   ],
   imports: [
     BrowserModule,

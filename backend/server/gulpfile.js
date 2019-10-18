@@ -3,11 +3,11 @@ var replace = require('gulp-replace');
 var fs = require('fs');
 
 gulp.task('injectHtml', function () {
-    return gulp.src('/Users/fortuzar/sites/fjot/proleitTest/src/app/app.component.html')
+    return gulp.src('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/app/src/app/components/home/home.component.html')
          .pipe(replace('<!-- injecthere -->', function () {
-            var htmlContent = fs.readFileSync('/Users/fortuzar/sites/fjot/fjot-landig/src/app/components/fjot-home/fjot-home.component.html', 'utf8');
-            return htmlContent.match(/<div.*[*result.*["']\s*>(.*)<\/div>/g);
+            var htmlContent = fs.readFileSync('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/frontend/src/app/components/pc-home/pc-home.component.html', 'utf8');
+            return htmlContent.match(/(?<=\<body\>)(\s*.*\s*)(.|\n)*?(?=\<\/body\>)/gm);
          }))
-        .pipe(gulp.dest('/Users/fortuzar/sites/fjot/proleitTest/src/app'));
+        .pipe(gulp.dest('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/app/src/app/components/home'));
 });
 
