@@ -12,7 +12,7 @@ import { MatButtonModule} from '@angular/material/button';
 import { PcNavComponent } from './components/pc-nav/pc-nav.component';
 import { GraphQLModule } from './graphql.module';
 import { PcLoginComponent } from './components/pc-login/pc-login.component';
-import { PcAccountComponent } from './components/pc-account/pc-account.component';
+import { PcNavigationComponent } from './components/pc-navigation/pc-navigation.component';
 // import { NbEvaIconsModule } from '@nebular/eva-icons';
 // import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 
@@ -22,7 +22,7 @@ import { PcAccountComponent } from './components/pc-account/pc-account.component
     PcHomeComponent,
     PcNavComponent,
     PcLoginComponent,
-    PcAccountComponent
+    PcNavigationComponent
   ],
   imports: [
     BrowserModule,

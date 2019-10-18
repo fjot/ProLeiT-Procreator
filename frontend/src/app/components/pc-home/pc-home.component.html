@@ -1,84 +1,29 @@
 <pc-nav></pc-nav>
-<!-- <div class="container">
-    <div class="row"> -->
-<!-- <h3>Create your own button</h3>
-        <div class="main-div">
-            <div class="div-html-element">
-                <div class="html-element-custom">
-                    <span>content:</span> <input type="text" [(ngModel)]="title">
-                    <span>width:</span> <input type="text" [(ngModel)]="width">
-                    <span>height:</span> <input type="text" [(ngModel)]="height">
-                    <span>background-color:</span> <input type="text" [(ngModel)]="backgroundColor">
-                    <span>border-radius:</span> <input type="text" [(ngModel)]="borderRadius">
-                    <span>color:</span> <input type="text" [(ngModel)]="color">
-                </div>
-            </div>
-
-            <div class="div-html-element-preview">
-                <div class="html-element-custom-result">
-                    <div #clone>
-                        
-                        <button [style.width]="width" [style.height]="height" [style.backgroundColor]="backgroundColor"
-                            [style.borderRadius]="borderRadius" [style.color]="color">{{title}}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div #result></div>
-
-        <div *ngIf="toasIsVisible" class="message-element">
-            <div class="message">
-                <p>Your custom button has been saved</p>
-
-                <div class="message-buttons">
-                    <button class="message-button-action" (click)="okButton()" style="margin-right: 5px">Ok</button>
-                    <button class="message-button-action" (click)="cancelButton()">Cancel</button>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="html-elemet-buttons">
-            <div *ngIf="!isVisible">
-                <p class="button-element-instrucction">Step 1: Save your button</p>
-                <button class="html-element-button-action" (click)="setButton()">Save</button>
-            </div>
-            <div *ngIf="isCompilerProcess">
-                <p class="button-element-instrucction">Step 2: You need to compile your code</p>
-                <button class="html-element-button-action" (click)="shellUp()" >Compile</button>
-            </div>
-            <div *ngIf="isDeploymentProcess">
-                <p class="button-element-instrucction">Step 3: Deploy your App in Cloud</p>
-                <button class="html-element-button-action" (click)="runServerUp()">Deployment</button>
-            </div>
-
-        </div> -->
 <div class="container-home">
     <div class="column-container-component">
         <div class="secciones-title">
-            <p style="font-size: 14px; color: #f5f5f6">Pages</p>
-            <hr>
+            <p>Pages</p>
         </div>
         <div class="secciones-title">
-            <p style="font-size: 14px; color: #f5f5f6">Components Library</p>
-            <hr>
+            <p>Components Library</p>
         </div>
         <ul class="column-container-content">
             <div>
                 <div style="display: flex; flex-direction: row; padding: 10px;" (click)="setDropdownList()">
-                    <i class="material-icons" style="color: white">keyboard_arrow_right</i>
+                    <!-- <i class="material-icons" style="color: white">keyboard_arrow_right</i> -->
                     <i class="material-icons" style="color: white">keyboard_arrow_down</i>
-                    <button #dropdown class="dropdown-btn">Text</button>
-
+                    <button #dropdown class="dropdown-btn">Navigation Bar</button>
                 </div>
-
                 <div #dropdownContainer [style.display]="isVisibleDropdownContainer" class="dropdown-container">
-                    <div class="text-container" cdkDropList #p="cdkDropList" [cdkDropListData]="elements"
-                        [cdkDropListConnectedTo]="[texto]" (cdkDropListDropped)="onDrop($event)"
-                        (cdkDropListEntered)="entered($event)" (cdkDropListExited)="exited($event)">
-                        <div *ngFor="let t of elements" cdkDrag [cdkDragData]="t">
-                            <p>Parragraph</p>
+                    <div class="text-container" 
+                    cdkDropList #navigationName="cdkDropList" 
+                    [cdkDropListData]="navigation"
+                    [cdkDropListConnectedTo]="[navigationCopyName]" 
+                    (cdkDropListDropped)="onDrop($event)"
+                    (cdkDropListEntered)="entered($event)" 
+                    (cdkDropListExited)="exited($event)">
+                        <div *ngFor="let item of navigation" cdkDrag [cdkDragData]="item">
+                            <p>Basic</p>
                         </div>
                     </div>
                 </div>
@@ -149,20 +94,24 @@
         <div class="smartphone-container ">
             <body>
                 <div class="smartphone">
-                    <!--Bottom from smartphone-->
-                    <!-- parragraph -->
                     <div class="layout-top">
-                        <p>Status Bar</p>
-                        <div class="layout-top-element" cdkDropList #texto="cdkDropList" [cdkDropListData]="text"
-                            [cdkDropListConnectedTo]="[p]" (cdkDropListDropped)="onDrop($event)"
-                            (cdkDropListEntered)="entered($event)" (cdkDropListExited)="exited($event)">
-                            <div class="p-text" *ngFor="let te of text" cdkDrag [cdkDragData]="te">
+                            <p>Status Bar</p>
+                        </div>
+                        <div class="layout-sub-top" 
+                            cdkDropList #navigationCopyName="cdkDropList" 
+                            [cdkDropListData]="navigationCopy"
+                            [cdkDropListConnectedTo]="[navigationName]" 
+                            (cdkDropListDropped)="onDrop($event)"
+                            (cdkDropListEntered)="entered($event)" 
+                            (cdkDropListExited)="exited($event)">
+                            <p *ngIf="isVisibleTextBar">Navigation Bar</p>
+                            <div *ngFor="let i of navigationCopy" cdkDrag [cdkDragData]="i">
                                 <!-- <p (click)="selectedText($event)" [style.color]="colorText" [style.fontSize]="sizeText"
                                     [style.textAlign]="alignText">{{te.p}}</p> -->
-                              <pc-account (click)="selectedText($event)"></pc-account>
+                              <pc-navigation [title]='i.title' (click)="selectedText($event)"></pc-navigation>
                             </div>
                         </div>
-                    </div>
+                
 
                     <!--Content from smartphone-->
                     <!-- <div class="layout-content">
@@ -206,10 +155,10 @@
             <hr>
         </div>
         <div class="html-element-custom" *ngIf="isVisibleText">
-            <span class="proporty-title">Text:</span> <input type="text" [(ngModel)]="text[0].p">
-            <span class="proporty-title">Font Size:</span> <input type="text" [(ngModel)]="sizeText">
+            <span class="proporty-title">Text:</span> <input type="text" [(ngModel)]="navigationCopy[0].title">
+            <!-- <span class="proporty-title">Font Size:</span> <input type="text" [(ngModel)]="sizeText">
             <span class="proporty-title">Color:</span> <input type="text" [(ngModel)]="colorText">
-            <span class="proporty-title">Align:</span> <input type="text" [(ngModel)]="alignText">
+            <span class="proporty-title">Align:</span> <input type="text" [(ngModel)]="alignText"> -->
         </div>
 
         <div class="html-element-custom" *ngIf="isVisibleButton">

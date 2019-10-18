@@ -13,8 +13,8 @@ export class PcLoginComponent implements OnInit {
   myMSALObj: any;
   requestObj: { scopes: string[]; };
   graphConfig: any;
- 
-  constructor(private router: Router) {}
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.msalConfig = {
@@ -42,20 +42,21 @@ export class PcLoginComponent implements OnInit {
   signIn() {
     let self = this
     this.myMSALObj.loginPopup(this.requestObj)
-    .then(function (loginResponse: any) {
-     if(loginResponse !== null) {
-      self.acquireTokenPopupAndCallMSGraph();
-     }
-    }).catch(function (error) {
-      //Please check the console for errors
-      console.log(error);
-    });
+      .then(function (loginResponse: any) {
+        if (loginResponse !== null) {
+          self.acquireTokenPopupAndCallMSGraph();
+        }
+      }).catch(function (error) {
+        //Please check the console for errors
+        console.log(error);
+      });
   }
 
   acquireTokenPopupAndCallMSGraph() {
     let self = this
     //Always start with acquireTokenSilent to obtain a token in the signed in user from cache
     this.myMSALObj.acquireTokenSilent(this.requestObj).then(function (tokenResponse) {
+      self.router.navigateByUrl('/dashboard')
       self.callMSGraph(self.graphConfig.graphMeEndpoint, tokenResponse.accessToken, self.graphAPICallback);
       self.callMSGraph(self.graphConfig.graphMeEndpointPhoto, tokenResponse.accessToken, self.graphAPICallback);
     }).catch(function (error) {
@@ -94,11 +95,12 @@ export class PcLoginComponent implements OnInit {
   }
 
   graphAPICallback(data: any) {
-    if(data) {
+    let self = this;
+    if (data && data !== null) {
       console.log(data)
-     // window.location.href = "http://localhost:4200/account";
     }
- 
+
   }
+
 
 }

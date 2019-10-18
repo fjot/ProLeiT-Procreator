@@ -9,12 +9,12 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
 
-const GET_BATCHES = gql`
- query  {
-    getBatches {
-      _Name
-    }
-}`;
+// const GET_BATCHES = gql`
+//  query  {
+//     getBatches {
+//       _Name
+//     }
+// }`;
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -25,31 +25,38 @@ const GET_BATCHES = gql`
 export class PcHomeComponent implements OnInit, OnDestroy {
   //batches: Observable<Batches.Query>;
 
-  getBatches: Observable<any>;
-  dropdown: any;
-  isVisibleDropdownContainer: string;
+
   constructor(private conf: ConfigService, 
               private apollo: Apollo) { }
+
+  getBatches: Observable<any>;
+  
+  dropdown: any;
+  isVisibleDropdownContainer: string;
  
-  todos = [];
-  content = [];
-  text = [];
+  // todos = [];
+  // content = [];
 
-  completed = [{button: 'Primary Button'}];
-  contentList = [{dropdown: 'Dropdown'}]
+  navigationCopy = [];
+  navigation = [{title: 'Title'}]
+
+  tableCopy = [];
+  table = []
+  
+  // completed = [{button: 'Primary Button'}];
+  // contentList = [{dropdown: 'Dropdown'}]
+ 
   // Define a list of HTML element
-  elements = [{p: 'Parragraph'}]
-
-                
-  // title: any;
-  // htmlObject: any;
-  // html: any;
+ 
+  isVisibleTextBar = true;
   isVisibleText = false;
-  isVisibleButton = false;
-  isVisibleDropdown = false;
-  // toasIsVisible = false;
+  isVisibleButton = false;   
+  isVisibleDropdown = false;     
+
   isCompilerProcess = false;
   isDeploymentProcess = false;
+
+  title: string;
 
   @ViewChild('dropdownList', {static: false}) dropdownList: ElementRef;
   @ViewChild('dropdownContainer', {static: false}) dropdownContainer: ElementRef;
@@ -57,12 +64,13 @@ export class PcHomeComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
+   this.title = 'Hola'
    this.isVisibleDropdownContainer = 'none';
-    this.getBatches = this.apollo
-    .watchQuery<any>({
-      query: GET_BATCHES,
-    })
-    .valueChanges.pipe(map(result => result.data.getBatches));
+    // this.getBatches = this.apollo
+    // .watchQuery<any>({
+    //   query: GET_BATCHES,
+    // })
+    // .valueChanges.pipe(map(result => result.data.getBatches));
 }
 
 ngOnDestroy() {
@@ -70,7 +78,6 @@ ngOnDestroy() {
 }
 
 setDropdownList(){
-
   if ( this.isVisibleDropdownContainer === 'flex') {
     this.isVisibleDropdownContainer = 'none';
   } else {
@@ -78,7 +85,6 @@ setDropdownList(){
   }
 }
 
-  
 
   onDrop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -92,12 +98,15 @@ setDropdownList(){
 
   entered(event: CdkDragEnter<string[]>) {
     console.log('Entered', event.item.data);
-   
    }
+
    exited(event: CdkDragExit<string[]>) {
-     if(this.elements.length === 1){
-       this.elements.push(this.elements[0]);
+     if(this.navigation.length === 1){
+       this.navigation.push(this.navigation[0]);
      } 
+     if(this.navigationCopy.length < 1) {
+       this.isVisibleTextBar = false;
+     }
       
    }
  
@@ -106,7 +115,6 @@ setDropdownList(){
       this.isVisibleText = true;
       this.isVisibleButton = false;
       this.isVisibleDropdown = false;
-     this.text[0].subText = '';
     }
   }
 

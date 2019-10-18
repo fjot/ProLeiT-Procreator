@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PcAccountComponent } from './pc-account.component';
+import { PcNavigationComponent } from './pc-navigation.component';
 
-describe('PcAccountComponent', () => {
-  let component: PcAccountComponent;
-  let fixture: ComponentFixture<PcAccountComponent>;
+describe('PcNavigationComponent', () => {
+  let component: PcNavigationComponent;
+  let fixture: ComponentFixture<PcNavigationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PcAccountComponent ]
+      declarations: [ PcNavigationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PcAccountComponent);
+    fixture = TestBed.createComponent(PcNavigationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
