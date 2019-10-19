@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Input } from '@angular/core';
 import { ConfigService } from '../../services/serverConnection';
 import { CdkDragDrop, CdkDragEnter, CdkDragExit, moveItemInArray, transferArrayItem  } from '@angular/cdk/drag-drop';
 
@@ -24,16 +24,19 @@ import {map} from 'rxjs/operators';
 })
 export class PcHomeComponent implements OnInit, OnDestroy {
   //batches: Observable<Batches.Query>;
-
-
+  getBatches: Observable<any>;
   constructor(private conf: ConfigService, 
               private apollo: Apollo) { }
 
-  getBatches: Observable<any>;
   
+  titleHeader = 'Title';
+  titleNavigation = 'Title';
+
+
+
   dropdown: any;
   isVisibleDropdownContainer: string;
-  title: string;
+  
 
   navigation = [{title: 'Navigation Bar'}]
   navigationCopy = [];
@@ -54,7 +57,6 @@ export class PcHomeComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-   this.title = 'Hola'
    this.isVisibleDropdownContainer = 'none';
     // this.getBatches = this.apollo
     // .watchQuery<any>({
@@ -84,11 +86,11 @@ setDropdownList(){
         event.previousIndex, event.currentIndex);
     }
   }
-
+//a 
   entered(event: CdkDragEnter<string[]>) {
     console.log('Entered', event.item.data);
    }
-
+//a
    exited(event: CdkDragExit<string[]>) {
     switch(event && event.container.id) {
       case 'dropListBasic':

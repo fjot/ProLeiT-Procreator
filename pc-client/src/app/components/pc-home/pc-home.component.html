@@ -4,6 +4,13 @@
         <div class="secciones-title">
             <p>Pages</p>
         </div>
+        <ul class="column-container-content">
+                <div style="display: flex; flex-direction: row; padding: 10px;" (click)="setDropdownList()">
+                        <i class="material-icons" style="color: white">keyboard_arrow_right</i>
+                        <!-- <i class="material-icons" style="color: white">keyboard_arrow_down</i> -->
+                        <button #dropdown class="dropdown-btn">Home</button>
+                    </div>
+        </ul>
         <div class="secciones-title">
             <p>Components Library</p>
         </div>
@@ -110,10 +117,10 @@
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
         <!-- * * * * * * * * * * * Start Smartphne container * * * * * * * -->
         <div class="smartphone-container ">
-            <body>
                 <div class="smartphone">
                     <div class="status-bar">
-                        <p>Status Bar</p>
+                        <img src="../../../assets/img/statusbar.png" alt="" width="100%">
+                        <!-- <p>Status Bar</p> -->
                     </div>
                     <div class="navigation-bar" 
                         cdkDropList #navigationCopyName="cdkDropList"
@@ -123,9 +130,35 @@
                         (cdkDropListEntered)="entered($event)"
                         (cdkDropListExited)="exited($event)">
                         <p *ngIf="isVisibleTextBar">Navigation Bar</p>
+                     <body>
                         <div *ngFor="let item of navigationCopy" cdkDrag [cdkDragData]="basic">
-                            <pc-navigation [title]='item.title' (click)="selectedNavigation($event)"></pc-navigation>
+                            <!-- <pc-navigation [title]='item.title' (click)="selectedNavigation($event)"></pc-navigation> -->
+                            <div id="navigation_default" (click)="selectedNavigation($event)">
+                                    <!-- Unnamed (Shape) -->
+                                    <div id="u288" class="ax_default icon">
+                                        <img id="u288_img" class="img " src="../../../assets/img/u288.svg" />
+                                        <div id="u288_text" class="text " style="display:none; visibility: hidden">
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                    <!-- Unnamed (Text) -->
+                                    <div id="u313" class="ax_default label" data-label="Fertig">
+                                        <div id="u313_div" class=""></div>
+                                        <div id="u313_text" class="text">
+                                            <span>{{titleNavigation}}</span>
+                                        </div>
+                                    </div>
+                                
+                                    <!-- Unnamed (Image) -->
+                                    <div id="u291" class="ax_default image1">
+                                        <img id="u291_img" class="img " src="../../../assets/img/u289.svg" />
+                                        <div id="u291_text" class="text " style="display:none; visibility: hidden">
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
+                    </body>
                     </div>
 
                     <div class="navigation-header" 
@@ -137,7 +170,15 @@
                     (cdkDropListExited)="exited($event)">
                     <p *ngIf="isVisibleHeaderText">Header (optional)</p>
                     <div *ngFor="let item of navigationHeaderCopy" cdkDrag [cdkDragData]="header">
-                        <pc-header [title]='item.title' (click)="selectedHeader($event)"></pc-header>
+                        <!-- <pc-header [title]='item.title' (click)="selectedHeader($event)"></pc-header> -->
+                        <div id="header_default" [title]='item.title'  (click)="selectedHeader($event)">
+                                <div id="u270">
+                                    <div id="u270_div"></div>
+                                    <div id="u270_text" class="text">
+                                        <span>{{titleHeader}}</span>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                 </div>
 
@@ -173,7 +214,7 @@
                     </div>
                 </div> -->
                 </div>
-            </body>
+         
         </div>
 
        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
@@ -190,11 +231,11 @@
             <p>Style</p>
         </div>
         <div class="html-element-custom" *ngIf="isVisibleText">
-            <span class="proporty-title">Text:</span> <input type="text" [(ngModel)]="navigationCopy[0].title">
+            <span class="proporty-title">Text:</span> <input type="text" [(ngModel)]="titleNavigation">
         </div>
 
         <div class="html-element-custom" *ngIf="isVisibleHeader">
-                <span class="proporty-title">Text:</span> <input type="text" [(ngModel)]="navigationHeaderCopy[0].title">
+                <span class="proporty-title">Text:</span> <input type="text" [(ngModel)]="titleHeader">
             </div>
     
 
