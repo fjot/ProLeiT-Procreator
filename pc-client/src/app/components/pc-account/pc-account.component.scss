@@ -1,0 +1,102 @@
+div.pc-main-div {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 5em 10em 0 10em;
+    ul {
+        list-style-type: none;
+        li {
+            color: #666;
+        }
+    }
+}
+
+div.pc-button-create {
+    display: flex;
+    width: 100%;
+    padding: 5em;
+    justify-content: flex-end;
+    button {
+        position: absolute;
+        display: flex;
+        height: 50px;
+        border: 2px solid #4358B9;
+        background-color: #fff;
+        color: #4358B9;
+        width: 200px;
+        justify-content: center;
+    }
+}
+
+div.pc-modal-div {
+    display: flex;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    top: 0;
+    z-index: 9;
+    div.pc-modal {
+        position: absolute;
+        top:0;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 50%;
+        margin: 0;
+        background-color: #0F1741;
+        justify-content: center;
+        img {
+            top: 0;
+            position: absolute;
+            left: 0;
+            padding: 20px;
+        }
+        label {
+            display: flex;
+            align-self: center;
+            flex-direction: row;
+            color: #fff;
+            align-self: center;
+            width: 50%;
+        }
+        input {
+            height: 50px;
+            display: flex;
+            align-self: center;
+            width: 50%;
+            flex-direction: row;
+            padding: 10px;
+            border: none;
+        }
+    }
+    div.pc-modal-button-create {
+        display: flex;
+        width: 100%;
+        align-self: center;
+        padding-right: 15em;
+        justify-content: flex-end;
+        button {
+            height: 50px;
+            border: 2px solid #4358B9;
+            background-color: #fff;
+            color: #4358B9;
+            width: 200px;
+        }
+    }
+}
+
+
+div.pc-modal-close-button {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    width: 100%;
+    justify-content: flex-end;
+    z-index: 10;
+    top: 20px;
+    cursor: pointer;
+}

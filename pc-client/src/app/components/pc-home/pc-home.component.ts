@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Input } from '@angular/core';
-import { ConfigService } from '../../services/serverConnection';
+import { ConfigService } from '../../services/funtions.service';
 import { CdkDragDrop, CdkDragEnter, CdkDragExit, moveItemInArray, transferArrayItem  } from '@angular/cdk/drag-drop';
 
 
@@ -29,8 +29,8 @@ export class PcHomeComponent implements OnInit, OnDestroy {
               private apollo: Apollo) { }
 
   
-  titleHeader = 'Title';
-  titleNavigation = 'Title';
+  titleHeader = 'Header';
+  titleNavigation = 'Navigation';
 
 
 

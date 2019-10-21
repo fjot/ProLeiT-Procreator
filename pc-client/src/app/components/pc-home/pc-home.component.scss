@@ -158,6 +158,7 @@
     border-width: 1px;
     height: 44px;
     width: 100%;
+    background-color: #fff;
     p {
       color: #B6B6B6;
       height: 100%;
@@ -213,6 +214,7 @@
   }
   .menu-link {
     color: #2A8CE6 !important;
+    cursor: pointer;
  } 
  li {
    display: flex;
@@ -234,7 +236,7 @@
 .column-container-component,
 .column-container-config {
  // border: 3px solid #B3C2CE;
-  background-color: #434F64;
+  background-color: #0F1741;
   width: 25%;
   .list {
     width: 300px;
@@ -270,7 +272,7 @@
 .dropdown-container {
   display: flex;
   flex-direction: column;
-  background-color: #434F64;
+  background-color: #0F1741;
   color: #fff;
   padding-left: 60px;
 }

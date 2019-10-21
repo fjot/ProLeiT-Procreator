@@ -10,9 +10,10 @@ import { MatCardModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule} from '@angular/material/button';
 import { PcNavComponent } from './components/pc-nav/pc-nav.component';
-import { GraphQLModule } from './graphql.module';
+import { GraphQLModule } from './graphql/graphql.module';
 import { PcLoginComponent } from './components/pc-login/pc-login.component';
 import { HtmlElementsModule } from './components/html-elements/html-elements.module';
+import { PcAccountComponent } from './components/pc-account/pc-account.component';
 // import { NbEvaIconsModule } from '@nebular/eva-icons';
 // import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 
@@ -22,6 +23,7 @@ import { HtmlElementsModule } from './components/html-elements/html-elements.mod
     PcHomeComponent,
     PcNavComponent,
     PcLoginComponent,
+    PcAccountComponent,
   ],
   imports: [
     BrowserModule,

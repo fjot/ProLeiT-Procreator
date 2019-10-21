@@ -1,0 +1,25 @@
+<pc-nav></pc-nav>
+<div class="pc-main-div">
+    <h3>Projects</h3>
+    <ul>
+        <li>Projet 1</li>
+    </ul>
+</div>
+
+<div class="pc-button-create">
+    <button (click)="clickOpenModal($event)">Add New Project</button>
+</div>
+
+<div *ngIf="isModalOpen" class="pc-modal-div">
+    <div class="pc-modal">
+        <img src="../../../assets/img/logo.white.png" alt="" width="40%">
+        <label for="">App Name</label>
+        <input type="text" name="" id="" placeholder="e.g. New App">
+    </div>
+    <div class="pc-modal-button-create" >
+        <button (click)="createProject()">Create New Project</button>
+    </div>
+</div>
+<div *ngIf="isModalOpen" class="pc-modal-close-button" (click)="clickCloseModal($event)">
+    <img src="../../../assets/img/delete-button.svg" alt="" width="10%">
+</div>

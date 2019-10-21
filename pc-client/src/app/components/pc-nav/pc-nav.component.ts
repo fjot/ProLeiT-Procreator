@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfigService } from '../../services/serverConnection';
+import { ConfigService } from '../../services/funtions.service';
 
 @Component({
   selector: 'pc-nav',

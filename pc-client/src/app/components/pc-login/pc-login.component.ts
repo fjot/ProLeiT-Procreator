@@ -56,7 +56,7 @@ export class PcLoginComponent implements OnInit {
     let self = this
     //Always start with acquireTokenSilent to obtain a token in the signed in user from cache
     this.myMSALObj.acquireTokenSilent(this.requestObj).then(function (tokenResponse) {
-      self.router.navigateByUrl('/dashboard')
+      self.router.navigateByUrl('/account')
       self.callMSGraph(self.graphConfig.graphMeEndpoint, tokenResponse.accessToken, self.graphAPICallback);
       self.callMSGraph(self.graphConfig.graphMeEndpointPhoto, tokenResponse.accessToken, self.graphAPICallback);
     }).catch(function (error) {

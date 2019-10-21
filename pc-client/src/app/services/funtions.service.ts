@@ -1,20 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,  } from '@angular/common/http';
 // import { NgxIndexedDB } from 'ngx-indexed-db';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
     providedIn: 'root'
 })
 export class ConfigService {
-    // res: any;
-    // configUrl = 'http://localhost:8080/script';
-    // configUrlRun = 'http://localhost:8080/run';
-    // configTask = 'http://localhost:8080/injectHtml';
-    // configHTML = 'http://localhost:8080/createHtml';
 
-
-    createNew = 'http://localhost:8080/create';
+    createNew = 'https://pc-create-project.azurewebsites.net/api/pc-create-project'
     copyFiles = 'http://localhost:8080/copy';
 
 
@@ -77,10 +72,7 @@ export class ConfigService {
 
 
     create() {
-        this.http.get(this.createNew)
-            .subscribe((res: any) => {
-                console.log(res);
-            });
+        return this.http.get(this.createNew)
     }
 
     copy() {

@@ -1,6 +1,6 @@
 
 .pc-container-background {
-    background-color: #434F64;
+    background-color: #0F1741;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -57,7 +57,8 @@ div.pc-login-container-center {
             justify-content: center;
             width: 100%;
             p {
-                margin-top: 100px;
+                margin-top: 20px;
+                margin-bottom: 80px;
                 font-size: 16px;
                 color: #666666;
                 text-align: center;
@@ -68,22 +69,27 @@ div.pc-login-container-center {
                 flex-direction: row;
                 border: 1px solid #073a73;
                 align-self: center;
+                .div-button-proleit {
+                    display: flex;
+                    width: 100%;
+                    justify-content: center;
+                }
                 img {
                     width: 40px;
                     padding: 5px;
-                    margin-left: 20px;
+                }
+                button {
+                    margin-left: 10px;
+                    font-family: Arial, Helvetica, sans-serif;
+                    height: 50px;
+                    width: 45%;
+                    color: #073a73;
+                    background-color: #fff;
+                    border: none;
+                
                 }
             }
-            button {
-                margin-left: 10px;
-                font-family: Arial, Helvetica, sans-serif;
-                height: 50px;
-                width: 90%;
-                color: #073a73;
-                background-color: #fff;
-                border: none;
-            
-            }
+         
         }
        
     } 

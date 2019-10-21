@@ -4,7 +4,7 @@ var fs = require('fs');
 
 gulp.task('injectHTML', () => {
    return gulp.src('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/app/src/app/app.component.html')
-      .pipe(replace('', () => {
+      .pipe(replace('INJECT', () => {
          var htmlContent = fs.readFileSync('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/pc-client/src/app/components/pc-home/pc-home.component.html', 'utf8');
          return htmlContent.match(/(?<=\<body\>)(\s*.*\s*)(.|\n)*?(?=\<\/body\>)/gm);
       }))
@@ -13,7 +13,7 @@ gulp.task('injectHTML', () => {
 
 gulp.task('injectJS', () => {
    return gulp.src('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/app/src/app/app.component.ts')
-      .pipe(replace('', () => {
+      .pipe(replace('INJECT', () => {
          var JSfunction = fs.readFileSync('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/pc-client/src/app/components/pc-home/pc-home.component.ts', 'utf8');
          return JSfunction.match(/()(?:\/)(?=\/a)(?:\/)((?:\1|[\s\S])*?)(?:\/a)\1/gm)
       }))
@@ -22,7 +22,7 @@ gulp.task('injectJS', () => {
 
 gulp.task('injectSCSS', () => {
    return gulp.src('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/app/src/app/app.component.scss')
-      .pipe(replace('', () => {
+      .pipe(replace('INJECT', () => {
          var SCSSfunction = fs.readFileSync('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/pc-client/src/app/components/pc-home/pc-home.component.scss', 'utf8');
          return SCSSfunction.match(/()(?:\/)(?=\/a)(?:\/)((?:\1|[\s\S])*?)(?:\/a)\1/gm)
       }))
