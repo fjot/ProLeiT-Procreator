@@ -2,6 +2,7 @@ import app from './app';
 import createProject from './api/create';
 import buildProject from './api/build';
 import createComponent from './api/create-component';
+import deleteContent from './task/delete-content';
 
 class Api {
     constructor() {
@@ -27,6 +28,12 @@ class Api {
                 console.log('done!');
             });
         });
+        app.get('/delete-content', (req, res) => {
+            deleteContent().then(() => {
+                console.log('done!');
+            });
+        });
+
 
     }
 

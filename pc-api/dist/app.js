@@ -6,11 +6,6 @@ class App {
     // private schema: GraphQLSchema;
     // private root;
     constructor() {
-        // private api(): void {
-        //   this.app.get('/', (req, res) => {
-        //     res.send('Welcome to Proleit WA');
-        //   });
-        // }
         this.header = (req, res, next) => {
             res.header('Access-Control-Allow-Origin', '*');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept, ' +
