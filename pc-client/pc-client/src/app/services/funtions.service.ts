@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient,  } from '@angular/common/http';
 // import { NgxIndexedDB } from 'ngx-indexed-db';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -9,12 +10,14 @@ import { map } from 'rxjs/operators';
 })
 export class ConfigService {
 
-    createNew = 'https://pc-create-project.azurewebsites.net/api/pc-create-project'
+    //createNew = 'https://pc-create-project.azurewebsites.net/api/pc-create-project?code=vCPvAszP8ngLQWabXmPuKcDNPd/sByj4geP1vh7j5ZCUM6sSPHO7wg=='
+    //createNew = 'http://localhost:7071/api/pc-create-project'
+    createNew = 'http://localhost:8080/create';
     copyFiles = 'http://localhost:8080/copy';
 
 
     // db = new NgxIndexedDB('dataProject', 1);
-     constructor(private http: HttpClient) {
+     constructor(private http: HttpClient, private router: Router) {
     //     this.setDateBase();
      }
 
@@ -72,7 +75,12 @@ export class ConfigService {
 
 
     create() {
-        return this.http.get(this.createNew)
+       this.http.get(this.createNew)
+        .subscribe((resp: any) => {
+         this.router.navigateByUrl('/dashboard');
+         console.log(resp);
+       
+       })
     }
 
     copy() {

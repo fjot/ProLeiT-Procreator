@@ -1,11 +1,9 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Input } from '@angular/core';
 import { ConfigService } from '../../services/funtions.service';
 import { CdkDragDrop, CdkDragEnter, CdkDragExit, moveItemInArray, transferArrayItem  } from '@angular/cdk/drag-drop';
-
-
-import gql from 'graphql-tag';
 import {Apollo} from 'apollo-angular';
 import {Observable} from 'rxjs';
+import gql from 'graphql-tag';
 import {map} from 'rxjs/operators';
 
 
@@ -25,39 +23,47 @@ import {map} from 'rxjs/operators';
 export class PcHomeComponent implements OnInit, OnDestroy {
   //batches: Observable<Batches.Query>;
   getBatches: Observable<any>;
+  devices: { option: number; name: string; }[];
+  
   constructor(private conf: ConfigService, 
               private apollo: Apollo) { }
 
   
   titleHeader = 'Header';
   titleNavigation = 'Navigation';
+  imgNavigation = '../../../assets/img/u289.svg';
+  titleContent = 'Content';
 
+  navigation = [{title: 'Navigation Bar'}]
+  navigationCopy = [];
+  navigationHeader = [{title: 'Header'}]
+  navigationHeaderCopy = []  
+  table = [{title: 'Header'}]
+  tableCopy = [];
+
+  
+  isVisibleHeader = false;
+  isVisibleNavigationBar = false
+
+
+  isVisibleTextBar = true;
+  isVisibleHeaderText = true;
+  isVisibleTableText = true;
 
 
   dropdown: any;
   isVisibleDropdownContainer: string;
   
 
-  navigation = [{title: 'Navigation Bar'}]
-  navigationCopy = [];
-  
-  navigationHeader = [{title: 'Header'}]
-  navigationHeaderCopy = []  
-
-  tableCopy = [];
-  table = []
-
-  isVisibleText = false;
-  isVisibleHeader = false;
-  isVisibleTextBar = true;
-  isVisibleHeaderText = true
+  //isVisibleButton = false;
 
   @ViewChild('dropdownList', {static: false}) dropdownList: ElementRef;
   @ViewChild('dropdownContainer', {static: false}) dropdownContainer: ElementRef;
 
 
   ngOnInit() {
-   this.isVisibleDropdownContainer = 'none';
+  this.devices = [{option: 1, name: 'Smartphone'}]
+   this.isVisibleDropdownContainer = 'flex';
     // this.getBatches = this.apollo
     // .watchQuery<any>({
     //   query: GET_BATCHES,
@@ -91,6 +97,7 @@ setDropdownList(){
     console.log('Entered', event.item.data);
    }
 //a
+
    exited(event: CdkDragExit<string[]>) {
     switch(event && event.container.id) {
       case 'dropListBasic':
@@ -98,6 +105,8 @@ setDropdownList(){
           case true:  
           this.navigation.push(this.navigation[0]);
           this.isVisibleTextBar = false;
+          this.isVisibleNavigationBar = true;
+          this.isVisibleHeader = false;
           break;
           default:
        }
@@ -107,116 +116,49 @@ setDropdownList(){
              case true:  
              this.navigationHeader.push(this.navigationHeader[0]);
              this.isVisibleHeaderText = false;
+             this.isVisibleNavigationBar = false;
+             this.isVisibleHeader = true;
              break;
              default:
           }
           break;
+          case 'dropListTable':
+              switch(this.table.length === 1 && this.tableCopy.length < 1) {
+                 case true:  
+                 this.table.push(this.table[0]);
+                 this.isVisibleTableText = false;
+                 break;
+                 default:
+              }
+              break;
        default:
-       console.log('Problem');
     }
-
-
-    //  if(event && event.id===this.navigation.length === 1){
-    //    this.navigation.push(this.navigation[0]);
-    //  } 
-    //  if(this.navigationHeader.length === 1){
-    //   this.navigationHeader.push(this.navigationHeader[0]);
-    // } 
-    //  if(this.navigationCopy.length < 1) {
-    //    this.isVisibleTextBar = false;
-    //  }
-    //  if(this.navigationHeaderCopy.length < 1) {
-    //   this.isVisibleHeaderText = false;
-    // }
-      
    }
 
-   
- 
   selectedNavigation(event: any) {
     if(event) {
-      this.isVisibleText = true;
+      this.isVisibleNavigationBar = true;
       this.isVisibleHeader = false;
-      // this.isVisibleButton = false;
-      // this.isVisibleDropdown = false;
     }
   }
 
   selectedHeader(event: any) {
     if(event) {
-      this.isVisibleText = false;
-      this.isVisibleHeader = true;
-      // this.isVisibleButton = false;
-      // this.isVisibleDropdown = false;
-    }
-  }
-
-  selectedButton(event: any) {
-    if(event) {
-      this.isVisibleText = false;
-      // this.isVisibleButton = true;
-      // this.isVisibleDropdown = false;
-      //this.todos.push(this.completed[0].name)
-    }
-  }
-
-  selectedDropdown(event: any) {
-    if(event) {
-      this.isVisibleText = false;
-      // this.isVisibleButton = false;
-      // this.isVisibleDropdown = true;
+      this.isVisibleNavigationBar = false;
+             this.isVisibleHeader = true;
     }
   }
 
   create() {
     this.conf.create();
-    // this.isDeploymentProcess = true;
-    // this.isCompilerProcess = false;
-
   }
 
   copy() {
     this.conf.copy();
-    console.log('click')
-    // this.isDeploymentProcess = true;
-    // this.isCompilerProcess = false;
-
   }
 
-  // runServerUp() {
-  //   this.conf.runServer();
-  // }
-
-  // okButton() {
-  //   this.toasIsVisible = false;
-  //   this.isCompilerProcess = true;
-
-  // }
-
-  // cancelButton() {
-  //   this.toasIsVisible = false;
-  // }
 
 
-  // setButton() {
-  //   const buttonSelected = this.button.nativeElement.lastChild;
-  //   const cln = buttonSelected.cloneNode(true);
-  //   const result = this.result.nativeElement;
-  //   // const resultHTML = result.appendChild(cln);
 
-  //   this.conf.createHtml();
-
-  //   // add new element into DB
-  //   this.htmlObject = cln.outerHTML;
-  //   this.conf.addDataB(this.htmlObject);
-
-  //   // this.conf.injectHtml();
-  //   this.toasIsVisible = true;
-  //   this.isVisible = true;
-  // }
-
-  // getDataBaseObject() {
-  //   this.conf.getByKey();
-  // }
 
 }

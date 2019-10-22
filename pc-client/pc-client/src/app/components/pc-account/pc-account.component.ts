@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../../services/funtions.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'pc-account',
@@ -11,7 +12,7 @@ export class PcAccountComponent implements OnInit {
   isModalOpen: boolean
   // Create a new Observable that will deliver the above sequence
   
-  constructor(private conf: ConfigService, ) { }
+  constructor(private conf: ConfigService, private router: Router ) { }
 
   ngOnInit() {
     this.isModalOpen = false;
@@ -27,10 +28,7 @@ export class PcAccountComponent implements OnInit {
   }
 
   createProject() {
-    this.conf.create()
-    .subscribe((res)=>{
-      console.log(res);
-    })
+    this.conf.create();
   }
 
   
