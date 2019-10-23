@@ -7,5 +7,6 @@ const port = 8000;
 api_1.default.api();
 app_1.default.listen(port, () => {
     console.log(`Listening at http://localhost:${port}/`);
+    console.log('Running a GraphQL API server at localhost:8000/graphql');
 });
 //# sourceMappingURL=index.js.map

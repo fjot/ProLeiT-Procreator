@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,  } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse,  } from '@angular/common/http';
 // import { NgxIndexedDB } from 'ngx-indexed-db';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Observable, throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
 
 
 @Injectable({
@@ -12,8 +14,9 @@ export class ConfigService {
 
     //createNew = 'https://pc-create-project.azurewebsites.net/api/pc-create-project?code=vCPvAszP8ngLQWabXmPuKcDNPd/sByj4geP1vh7j5ZCUM6sSPHO7wg=='
     //createNew = 'http://localhost:7071/api/pc-create-project'
-    createNew = 'http://localhost:8080/create';
-    copyFiles = 'http://localhost:8080/copy';
+    createNew = 'http://localhost:8000/create';
+    deployNew = 'http://localhost:8000/deploy';
+    copyFiles = 'http://localhost:8000/copy';
 
 
     // db = new NgxIndexedDB('dataProject', 1);
@@ -74,14 +77,23 @@ export class ConfigService {
     // }
 
 
-    create() {
+   create() {
        this.http.get(this.createNew)
-        .subscribe((resp: any) => {
-         this.router.navigateByUrl('/dashboard');
-         console.log(resp);
-       
-       })
+            .subscribe((res: any) => {
+                console.log(res);
+            }, (err: HttpErrorResponse) => {
+                console.log(err);
+             });
     }
+
+    deploy() {
+      this.http.get(this.deployNew)
+           .subscribe((res: any) => {
+               console.log(res);
+           }, (err: HttpErrorResponse) => {
+               console.log(err);
+            });
+   }
 
     copy() {
         this.http.get(this.copyFiles)
@@ -89,6 +101,20 @@ export class ConfigService {
                 console.log(res);
             });
     }
+
+    handleError(error) {
+        let errorMessage = '';
+        if (error.error instanceof ErrorEvent) {
+          // client-side error
+          errorMessage = `Error: ${error.error.message}`;
+        } else {
+          // server-side error
+          errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+        }
+        window.alert(errorMessage);
+        return throwError(errorMessage);
+      }
+     
     
     // ngOnDestroy() {
     //     this.onDestroy$.next(true);

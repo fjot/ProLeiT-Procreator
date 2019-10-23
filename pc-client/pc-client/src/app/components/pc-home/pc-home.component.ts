@@ -24,16 +24,30 @@ export class PcHomeComponent implements OnInit, OnDestroy {
   //batches: Observable<Batches.Query>;
   getBatches: Observable<any>;
   devices: { option: number; name: string; }[];
+  naviList: any;
+  navigationName: any;
+  navigationHeaderName: any;
+  tableName: any;
   
   constructor(private conf: ConfigService, 
               private apollo: Apollo) { }
 
-  
+  // Set names into Smartphone
   titleHeader = 'Header';
   titleNavigation = 'Navigation';
   imgNavigation = '../../../assets/img/u289.svg';
   titleContent = 'Content';
 
+  // Set titles into smarthone
+  isVisibleTextBar = true;
+  isVisibleHeaderText = true;
+  isVisibleTableText = true;
+
+  // Set the html elements list sidebar
+  isVisibleNavigationList: boolean;
+  isVisibleTablelist: boolean;
+
+  // Arrays 
   navigation = [{title: 'Navigation Bar'}]
   navigationCopy = [];
   navigationHeader = [{title: 'Header'}]
@@ -41,29 +55,15 @@ export class PcHomeComponent implements OnInit, OnDestroy {
   table = [{title: 'Header'}]
   tableCopy = [];
 
-  
+  // Set proporties into sidebar for change
   isVisibleHeader = false;
   isVisibleNavigationBar = false
 
-
-  isVisibleTextBar = true;
-  isVisibleHeaderText = true;
-  isVisibleTableText = true;
-
-
-  dropdown: any;
-  isVisibleDropdownContainer: string;
   
-
-  //isVisibleButton = false;
-
-  @ViewChild('dropdownList', {static: false}) dropdownList: ElementRef;
-  @ViewChild('dropdownContainer', {static: false}) dropdownContainer: ElementRef;
-
-
   ngOnInit() {
   this.devices = [{option: 1, name: 'Smartphone'}]
-   this.isVisibleDropdownContainer = 'flex';
+  this.isVisibleNavigationList = false;
+  this.isVisibleTablelist = false;
     // this.getBatches = this.apollo
     // .watchQuery<any>({
     //   query: GET_BATCHES,
@@ -75,12 +75,17 @@ ngOnDestroy() {
 
 }
 
-setDropdownList(){
-  if ( this.isVisibleDropdownContainer === 'flex') {
-    this.isVisibleDropdownContainer = 'none';
-  } else {
-    this.isVisibleDropdownContainer = 'flex';
-  }
+openList(event){
+ console.log(event)
+  switch(event && event.currentTarget.id){
+     case 'navigationList':
+       this.isVisibleNavigationList = !this.isVisibleNavigationList
+      break;
+      case 'tableList':
+          this.isVisibleTablelist = !this.isVisibleTablelist
+         break;
+      default:
+   }
 }
 
   onDrop(event: CdkDragDrop<string[]>) {
@@ -149,12 +154,13 @@ setDropdownList(){
     }
   }
 
-  create() {
-    this.conf.create();
+  deploy() {
+    this.conf.deploy();
+    alert('https://demoappstatic.z6.web.core.windows.net/')
   }
 
-  copy() {
-    this.conf.copy();
+  save() {
+    alert('Ready to Deploy')
   }
 
 

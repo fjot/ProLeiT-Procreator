@@ -5,20 +5,21 @@ var fs = require('fs');
 // TODO: install dotenv
 
 
-const HTML = '/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/app/src/app/app.component.html';
-const JS ='/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/app/src/app/app.component.ts';
-const SCSS = '/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/app/src/app/app.component.scss'; 
-const DESTINATION = '/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/app/src/app';
+const HTMLTemplate = '/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/demo-app/src/app/app.component.html';
+const HTMLHome = '/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/demo-app/src/app/components/home/home.component.html';
+const JS ='/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/demo-app/src/app/components/home/home.component.ts';
+const SCSS = '/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/demo-app/src/app/components/home/home.component.scss'; 
+const DESTINATION = '/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/demo-app/src/app';
 
 /**
  * Watch the Sass directory for changes.
  */
-gulp.task('deleteHTML', () => {
-   const htmlContent = fs.readFileSync('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/app/src/app/app.component.html', 'utf8');
-   return gulp.src(HTML)
-      .pipe(replace( htmlContent, () => {
-         var htmlContent = fs.readFileSync('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/pc-client/pc-client/src/app/app.component.html', 'utf8');
-         return htmlContent.match(/(?<=\<div\>)(\s*.*\s*)(.|\n)*?(?=\<\/div\>)/gm);
+gulp.task('deleteHTMLfromTemplate', () => {
+   const text = fs.readFileSync('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/demo-app/src/app/app.component.html', 'utf8');
+   return gulp.src(HTMLTemplate)
+      .pipe(replace( text, () => {
+         var htmlFromContent = fs.readFileSync('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/pc-client/pc-client/src/app/app.component.html', 'utf8');
+         return htmlFromContent.match(/(?<=\<div\>)(\s*.*\s*)(.|\n)*?(?=\<\/div\>)/gm);
       }))
       .pipe(gulp.dest(DESTINATION))
 });
@@ -27,10 +28,12 @@ gulp.task('deleteHTML', () => {
  * Watch the Sass directory for changes.
  */
 
-gulp.task('injectHTML', () => {
-   return gulp.src(HTML)
-      .pipe(replace('INJECT', () => {
-         var htmlContent = fs.readFileSync('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/pc-client/src/app/components/pc-home/pc-home.component.html', 'utf8');
+gulp.task('injectHTMLfromHome', () => {
+   const textHTML = fs.readFileSync('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/demo-app/src/app/components/home/home.component.html', 'utf8');
+   console.log(textHTML)
+   return gulp.src(HTMLHome)
+      .pipe(replace(textHTML, () => {
+         var htmlContent = fs.readFileSync('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/pc-client/pc-client/src/app/components/pc-home/pc-home.component.html', 'utf8');
          return htmlContent.match(/(?<=\<body\>)(\s*.*\s*)(.|\n)*?(?=\<\/body\>)/gm);
       }))
       .pipe(gulp.dest(DESTINATION))
@@ -43,7 +46,7 @@ gulp.task('injectHTML', () => {
 gulp.task('injectJS', () => {
    return gulp.src(JS)
       .pipe(replace('INJECT', () => {
-         var JSfunction = fs.readFileSync('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/pc-client/src/app/components/pc-home/pc-home.component.ts', 'utf8');
+         var JSfunction = fs.readFileSync('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/pc-client/pc-client/src/app/components/pc-home/pc-home.component.ts', 'utf8');
          return JSfunction.match(/()(?:\/)(?=\/a)(?:\/)((?:\1|[\s\S])*?)(?:\/a)\1/gm)
       }))
       .pipe(gulp.dest(DESTINATION))
@@ -54,9 +57,10 @@ gulp.task('injectJS', () => {
  */
 
 gulp.task('injectSCSS', () => {
+   const scss = fs.readFileSync('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/demo-app/src/app/components/home/home.component.scss', 'utf8');
    return gulp.src(SCSS)
-      .pipe(replace('INJECT', () => {
-         var SCSSfunction = fs.readFileSync('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/pc-client/src/app/components/pc-home/pc-home.component.scss', 'utf8');
+      .pipe(replace( '// INYEXTk', () => {
+         var SCSSfunction = fs.readFileSync('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/pc-client/pc-client/src/app/components/pc-home/pc-home.component.scss', 'utf8');
          return SCSSfunction.match(/()(?:\/)(?=\/a)(?:\/)((?:\1|[\s\S])*?)(?:\/a)\1/gm)
       }))
       .pipe(gulp.dest(DESTINATION))

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class PcAccountComponent implements OnInit {
   isModalOpen: boolean
+  appname: string;
   // Create a new Observable that will deliver the above sequence
   
   constructor(private conf: ConfigService, private router: Router ) { }
@@ -28,7 +29,12 @@ export class PcAccountComponent implements OnInit {
   }
 
   createProject() {
-    this.conf.create();
+   // this.conf.create();
+    setTimeout(() => {
+      this.isModalOpen = !this.isModalOpen
+      this.appname = 'demo-app'
+    }, 2000);
+   
   }
 
   

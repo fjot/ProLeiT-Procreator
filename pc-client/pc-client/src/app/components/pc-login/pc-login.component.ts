@@ -21,8 +21,8 @@ export class PcLoginComponent implements OnInit {
       auth: {
         clientId: "d30afd18-9c2a-4040-8188-fac05ccf477c",
         authority: "https://login.microsoftonline.com/cee9dfa6-646a-4f09-86a8-ba4203711d65",
-        redirectUri: "http://localhost:4200/login", //defaults to application start page
-        // postLogoutRedirectUri: "http://localhost:4200"
+        //redirectUri: "https://procreatorstudiostatic.z6.web.core.windows.net/", //defaults to application start page
+        redirectUri: "http://localhost:4200", //defaults to application start page
       },
       cache: {
         cacheLocation: "localStorage",
@@ -35,7 +35,7 @@ export class PcLoginComponent implements OnInit {
     };
     this.graphConfig = {
       graphMeEndpoint: "https://graph.microsoft.com/v1.0/me",
-      graphMeEndpointPhoto: "https://graph.microsoft.com/v1.0/me/photo"
+     // graphMeEndpointPhoto: "https://graph.microsoft.com/v1.0/me/photo"
     };
   }
 
@@ -56,9 +56,10 @@ export class PcLoginComponent implements OnInit {
     let self = this
     //Always start with acquireTokenSilent to obtain a token in the signed in user from cache
     this.myMSALObj.acquireTokenSilent(this.requestObj).then(function (tokenResponse) {
-      self.router.navigateByUrl('/account')
       self.callMSGraph(self.graphConfig.graphMeEndpoint, tokenResponse.accessToken, self.graphAPICallback);
-      self.callMSGraph(self.graphConfig.graphMeEndpointPhoto, tokenResponse.accessToken, self.graphAPICallback);
+      //self.callMSGraphPhoto(self.graphConfig.graphMeEndpointPhoto, tokenResponse.accessToken, self.graphAPICallbackPhoto);
+      self.router.navigateByUrl('/account')
+    //  sessionStorage.setItem('TOKEN', JSON.stringify(tokenResponse));
     }).catch(function (error) {
       console.log(error);
       // Upon acquireTokenSilent failure (due to consent or interaction or login required ONLY)
@@ -66,7 +67,7 @@ export class PcLoginComponent implements OnInit {
       if (self.requiresInteraction(error.errorCode)) {
         this.myMSALObj.acquireTokenPopup(this.requestObj).then(function (tokenResponse) {
           self.callMSGraph(self.graphConfig.graphMeEndpoint, tokenResponse.accessToken, self.graphAPICallback);
-          self.callMSGraph(self.graphConfig.graphMeEndpointPhoto, tokenResponse.accessToken, self.graphAPICallback);
+      //  self.callMSGraphPhoto(self.graphConfig.graphMeEndpointPhoto, tokenResponse.accessToken, self.graphAPICallbackPhoto);
         }).catch(function (error) {
           console.log(error);
         });
@@ -85,6 +86,18 @@ export class PcLoginComponent implements OnInit {
     xmlHttp.send();
   }
 
+  // TODO: add photo to user
+  // callMSGraphPhoto(theUrl, accessToken, callback) {
+  //   var xmlHttp = new XMLHttpRequest();
+  //   xmlHttp.onreadystatechange = function () {
+  //     if (this.readyState == 4 && this.status == 200)
+  //       callback(JSON.parse(this.responseText));
+  //   }
+  //   xmlHttp.open("GET", theUrl, true); // true for asynchronous
+  //   xmlHttp.setRequestHeader('Authorization', 'Bearer ' + accessToken);
+  //   xmlHttp.send();
+  // }
+
   requiresInteraction(errorCode) {
     if (!errorCode || !errorCode.length) {
       return false;
@@ -97,10 +110,18 @@ export class PcLoginComponent implements OnInit {
   graphAPICallback(data: any) {
     let self = this;
     if (data && data !== null) {
-      console.log(data)
+      sessionStorage.setItem('USER_TOKEN', JSON.stringify(data));
     }
 
   }
+
+  // TODO: add photo to user
+  // graphAPICallbackPhoto(data: any) {
+  //   let self = this;
+  //   if (data && data !== null) {
+  //     sessionStorage.setItem('photo', JSON.stringify(data));
+  //   }
+  // }
 
 
 }

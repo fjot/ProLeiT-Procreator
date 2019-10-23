@@ -1,5 +1,5 @@
 {
-  "name": "fjot-landig",
+  "name": "procreator-studio",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -23,6 +23,7 @@
     "@angular/platform-browser": "~8.2.9",
     "@angular/platform-browser-dynamic": "~8.2.9",
     "@angular/router": "~8.2.9",
+    "@azure/ng-deploy": "^0.2.3",
     "@nebular/eva-icons": "4.4.0",
     "@nebular/theme": "^4.4.0",
     "@playlyfe/gql": "^2.6.2",

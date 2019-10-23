@@ -6,6 +6,7 @@ const create_1 = tslib_1.__importDefault(require("./api/create"));
 const build_1 = tslib_1.__importDefault(require("./api/build"));
 const create_component_1 = tslib_1.__importDefault(require("./api/create-component"));
 const delete_content_1 = tslib_1.__importDefault(require("./task/delete-content"));
+const deploy_1 = tslib_1.__importDefault(require("./api/deploy"));
 class Api {
     constructor() {
         this.api();
@@ -16,6 +17,13 @@ class Api {
         });
         app_1.default.get('/create', (req, res) => {
             create_1.default().then(() => {
+                setTimeout(() => {
+                    create_component_1.default();
+                }, 5000);
+            });
+        });
+        app_1.default.get('/delete-content', (req, res) => {
+            delete_content_1.default().then(() => {
                 console.log('done!');
             });
         });
@@ -24,14 +32,9 @@ class Api {
                 console.log('done!');
             });
         });
-        app_1.default.get('/create-component', (req, res) => {
-            create_component_1.default().then(() => {
-                console.log('done!');
-            });
-        });
-        app_1.default.get('/delete-content', (req, res) => {
-            delete_content_1.default().then(() => {
-                console.log('done!');
+        app_1.default.get('/deploy', (req, res) => {
+            deploy_1.default().then(() => {
+                console.log('see your deployed site at https://demoappstatic.z6.web.core.windows.net/');
             });
         });
     }

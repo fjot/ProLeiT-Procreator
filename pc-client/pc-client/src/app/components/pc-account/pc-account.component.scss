@@ -3,6 +3,13 @@ div.pc-main-div {
     height: 100%;
     width: 100%;
     padding: 5em 10em 0 10em;
+    table {
+        width:100%; 
+        margin-top: 20px; 
+        td{
+            cursor: pointer;
+        }
+    }
     ul {
         list-style-type: none;
         li {
@@ -20,9 +27,9 @@ div.pc-button-create {
         position: absolute;
         display: flex;
         height: 50px;
-        border: 2px solid #4358B9;
-        background-color: #fff;
-        color: #4358B9;
+        border: 2px solid #1E283C;
+        background-color: #F5F5F5;
+        color: #1E283C;
         width: 200px;
         justify-content: center;
     }
@@ -46,7 +53,8 @@ div.pc-modal-div {
         height: 100%;
         width: 50%;
         margin: 0;
-        background-color: #0F1741;
+        // background-color: #0F1741;
+        background-color: #1E283C;
         justify-content: center;
         img {
             top: 0;
@@ -80,9 +88,9 @@ div.pc-modal-div {
         justify-content: flex-end;
         button {
             height: 50px;
-            border: 2px solid #4358B9;
-            background-color: #fff;
-            color: #4358B9;
+            border: 2px solid #1E283C;
+            // background-color: #fff;
+            color: #1E283C;
             width: 200px;
         }
     }

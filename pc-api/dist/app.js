@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const express_1 = tslib_1.__importDefault(require("express"));
+// import cors from 'cors';
 class App {
     // private schema: GraphQLSchema;
     // private root;
@@ -17,7 +18,7 @@ class App {
     }
     config() {
         this.app.use(this.header);
-        // this.app.use('/graphql', graphqlHTTP({
+        // this.app.use('/graphql', cors(), graphqlHTTP({
         //   schema: this.schema,
         //   rootValue: this.root,
         //   graphiql: true

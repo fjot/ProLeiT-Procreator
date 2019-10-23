@@ -1,1 +1,14 @@
-
+.navigation {
+    background-color: #fff;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .navigation-user {
+        display: flex; 
+        flex-direction: column;
+        p {
+            margin: 0;
+        }
+    }
+}

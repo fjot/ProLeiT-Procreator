@@ -1,0 +1,17 @@
+{
+  "hosting": [
+    {
+      "app": {
+        "project": "procreator-studio",
+        "target": "build",
+        "configuration": "production",
+        "path": "dist/"
+      },
+      "azureHosting": {
+        "subscription": "402357fc-655d-44ae-a57f-a8d8ef368383",
+        "resourceGroupName": "cc2-resource-group-procreator",
+        "account": "procreatorstudiostatic"
+      }
+    }
+  ]
+}
