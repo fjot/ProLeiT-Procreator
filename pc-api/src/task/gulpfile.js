@@ -1,46 +1,38 @@
 var gulp = require('gulp');
 var replace = require('gulp-replace');
 var fs = require('fs');
-
-// TODO: install dotenv
-
-
-const HTMLTemplate = '/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/demo-app/src/app/app.component.html';
-const HTMLHome = '/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/demo-app/src/app/components/home/home.component.html';
-const JS ='/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/demo-app/src/app/components/home/home.component.ts';
-const SCSS = '/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/demo-app/src/app/components/home/home.component.scss'; 
-const DESTINATION = '/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/demo-app/src/app';
+var dotenv = require('dotenv');
+dotenv.config();
 
 /**
- * Watch the Sass directory for changes.
+ * Watch the HTML from the tempalte when we create a new Project.
  */
 gulp.task('deleteHTMLfromTemplate', () => {
-   const text = fs.readFileSync('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/demo-app/src/app/app.component.html', 'utf8');
-   return gulp.src(HTMLTemplate)
+   const text = fs.readFileSync(process.env.HTMLDESTINATION_URL, 'utf8');
+   return gulp.src(process.env.HTMLDESTINATION_URL)
       .pipe(replace( text, () => {
-         var htmlFromContent = fs.readFileSync('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/pc-client/pc-client/src/app/app.component.html', 'utf8');
+         var htmlFromContent = fs.readFileSync(process.env.HTMLFROMCREATOR_URL, 'utf8');
          return htmlFromContent.match(/(?<=\<div\>)(\s*.*\s*)(.|\n)*?(?=\<\/div\>)/gm);
       }))
-      .pipe(gulp.dest(DESTINATION))
+      .pipe(gulp.dest(process.env.DESTINATION_URL))
 });
 
 /**
- * Watch the Sass directory for changes.
+ * Watch the HTML directory for changes.
  */
 
 gulp.task('injectHTMLfromHome', () => {
-   const textHTML = fs.readFileSync('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/projects/demo-app/src/app/components/home/home.component.html', 'utf8');
-   console.log(textHTML)
-   return gulp.src(HTMLHome)
+   const textHTML = fs.readFileSync(process.env.HTMLCOMPONENTDESTINATION_URL, 'utf8');
+   return gulp.src(process.env.HTMLCOMPONENTDESTINATION_URL)
       .pipe(replace(textHTML, () => {
-         var htmlContent = fs.readFileSync('/Users/hrzwksfot01-proleit-ag-francisco_ortuzar/Sites/github/procreator/pc-client/pc-client/src/app/components/pc-home/pc-home.component.html', 'utf8');
-         return htmlContent.match(/(?<=\<body\>)(\s*.*\s*)(.|\n)*?(?=\<\/body\>)/gm);
+         var htmlContent = fs.readFileSync(process.env.HTMLHOMEFROMCREATOR_URL, 'utf8');
+         return htmlContent.match(/(?<=\<nav\>)(\s*.*\s*)(.|\n)*?(?=\<\/nav\>)|(?<=\<body\>)(\s*.*\s*)(.|\n)*?(?=\<\/body\>)|(?<=\<nav\>)(\s*.*\s*)(.|\n)*?(?=\<\/nav\>)/gm);
       }))
-      .pipe(gulp.dest(DESTINATION))
+      .pipe(gulp.dest(process.env.DESTINATIONTO_URL))
 });
 
 /**
- * Watch the Sass directory for changes.
+ * Watch the Javascript directory for changes.
  */
 
 gulp.task('injectJS', () => {
@@ -70,7 +62,7 @@ gulp.task('injectSCSS', () => {
 /**
  * Watch the Sass directory for changes.
  */
-gulp.task('watch', function() {
+gulp.task('watch', () => {
     gulp.watch('./sass/*.scss', ['sass']);  // If a file changes, re-run 'sass'
   });
 

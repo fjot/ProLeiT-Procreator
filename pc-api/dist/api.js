@@ -5,7 +5,7 @@ const app_1 = tslib_1.__importDefault(require("./app"));
 const create_1 = tslib_1.__importDefault(require("./api/create"));
 const build_1 = tslib_1.__importDefault(require("./api/build"));
 const create_component_1 = tslib_1.__importDefault(require("./api/create-component"));
-const delete_content_1 = tslib_1.__importDefault(require("./task/delete-content"));
+const delete_content_1 = tslib_1.__importDefault(require("./api/delete-content"));
 const deploy_1 = tslib_1.__importDefault(require("./api/deploy"));
 class Api {
     constructor() {

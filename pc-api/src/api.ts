@@ -2,7 +2,7 @@ import app from './app';
 import createProject from './api/create';
 import buildProject from './api/build';
 import createComponent from './api/create-component';
-import deleteContent from './task/delete-content';
+import deleteContent from './api/delete-content';
 import deployProject from './api/deploy';
 
 class Api {

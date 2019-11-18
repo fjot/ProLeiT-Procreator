@@ -6,9 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+ 
+ // js
   titleNavigation = '';
-  imgNavigation = 'https://img.icons8.com/ios-glyphs/24/000000/search.png';
   titleHeader = 'Batch Overview';
+
+  // js
   
   constructor() { }
 

@@ -1,59 +1,63 @@
-<!-- <pc-navigation [title]='item.title' (click)="selectedNavigation($event)"></pc-navigation> -->
-<div id="navigation_default" (click)="selectedNavigation($event)">
-    <!-- Unnamed (Shape) -->
-    <div id="u288" class="ax_default icon">
-        <img id="u288_img" class="img " src="../../../assets/img/u288.svg" />
-        <div id="u288_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-        </div>
-    </div>
-    <!-- Unnamed (Text) -->
-    <div id="u313" class="ax_default label" data-label="Fertig">
-        <div id="u313_div" class=""></div>
-        <div id="u313_text" class="text">
-            <span>{{titleNavigation}}</span>
-        </div>
-    </div>
 
-    <!-- Unnamed (Image) -->
-    <div id="u291" class="ax_default image1">
-        <img id="u291_img" class="img " [src]="imgNavigation" />
-        <div id="u291_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-        </div>
-    </div>
-</div>
+                       
+                            <!-- <pc-navigation [title]='item.title' (click)="selectedNavigation($event)"></pc-navigation> -->
+                            <div id="navigation_default" (click)="selectedNavigation($event)">
+                                <!-- Unnamed (Shape) -->
+                                <div id="u288" class="ax_default icon">
+                                    <img id="u288_img" class="img " src="../../../assets/img/u288.svg" />
+                                    <div id="u288_text" class="text " style="display:none; visibility: hidden">
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <!-- Unnamed (Text) -->
+                                <div id="u313" class="ax_default label" data-label="Fertig">
+                                    <div id="u313_div" class=""></div>
+                                    <div id="u313_text" class="text">
+                                        <span>{{titleNavigation}}</span>
+                                    </div>
+                                </div>
 
+                                <!-- Unnamed (Image) -->
+                                <div id="u291" class="ax_default image1">
+                                    <img id="u291_img" class="img " [src]="imgNavigation" />
+                                    <div id="u291_text" class="text " style="display:none; visibility: hidden">
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                     
+                        ,
+                            <div id="header_default" [title]='item.title' (click)="selectedHeader($event)">
+                                    <div id="u270">
+                                        <div id="u270_div"></div>
+                                        <div id="u270_text" class="text">
+                                            <span>{{titleHeader}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            ,
+                            <table
+                            style="width:100%; margin-top: 20px; text-align: center; font-family: Arial; padding-left: 20px;">
+                            <tr>
+                                <th>{{label1}}</th>
+                                <th>{{label2}}</th>
+                                <th>{{label3}}</th>
+                            </tr>
+                            <tr>
+                                <td>Label</td>
+                                <td>Label</td>
+                                <td>Label</td>
+                            </tr>
+                            <tr>
+                                <td>Label</td>
+                                <td>Label</td>
+                                <td>Label</td>
+                            </tr>
+                            <tr>
+                                <td>Label</td>
+                                <td>Label</td>
+                                <td>Label</td>
+                            </tr>
+                        </table>
 
-<div id="header_default" (click)="selectedHeader($event)">
-    <div id="u270">
-        <div id="u270_div"></div>
-        <div id="u270_text" class="text">
-            <span>{{titleHeader}}</span>
-        </div>
-    </div>
-</div>
-
-
-<table style="width:100%; margin-top: 20px; text-align: center; font-family: Arial; padding-left: 20px;">
-    <tr>
-        <th>Batch Name</th>
-        <th>Start Time</th>
-        <th>Status</th>
-    </tr>
-    <tr>
-        <td>Batch 1</td>
-        <td>453355w-01</td>
-        <td>05:02:01</td>
-    </tr>
-    <tr>
-        <td>Batch 2</td>
-        <td>453355w-02</td>
-        <td>05:02:03</td>
-    </tr>
-    <tr>
-        <td>Batch 3</td>
-        <td>453355w-03</td>
-        <td>05:02:03</td>
-    </tr>
-</table>
+                      
