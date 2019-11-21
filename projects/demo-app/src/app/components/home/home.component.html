@@ -1,7 +1,7 @@
 
                        
                             <!-- <pc-navigation [title]='item.title' (click)="selectedNavigation($event)"></pc-navigation> -->
-                            <div id="navigation_default" (click)="selectedNavigation($event)">
+                            <div id="navigation_default" >
                                 <!-- Unnamed (Shape) -->
                                 <div id="u288" class="ax_default icon">
                                     <img id="u288_img" class="img " src="../../../assets/img/u288.svg" />
@@ -25,39 +25,42 @@
                                     </div>
                                 </div>
                             </div>
-                     
-                        ,
-                            <div id="header_default" [title]='item.title' (click)="selectedHeader($event)">
+                    
+                            <div id="header_default">
                                     <div id="u270">
                                         <div id="u270_div"></div>
                                         <div id="u270_text" class="text">
-                                            <span>{{titleHeader}}</span>
+                                            <span style="color: #073a73">{{titleHeader}}</span>
                                         </div>
                                     </div>
                                 </div>
-                            ,
-                            <table
-                            style="width:100%; margin-top: 20px; text-align: center; font-family: Arial; padding-left: 20px;">
-                            <tr>
-                                <th>{{label1}}</th>
-                                <th>{{label2}}</th>
-                                <th>{{label3}}</th>
-                            </tr>
-                            <tr>
-                                <td>Label</td>
-                                <td>Label</td>
-                                <td>Label</td>
-                            </tr>
-                            <tr>
-                                <td>Label</td>
-                                <td>Label</td>
-                                <td>Label</td>
-                            </tr>
-                            <tr>
-                                <td>Label</td>
-                                <td>Label</td>
-                                <td>Label</td>
-                            </tr>
-                        </table>
+                                <div class="table-header-title"
+                                [style.background]="TcolorBackground">
+                                <div class="table-header-1">
+                                    <div class="table-header-2">
+                                        <p [style.color]="TcolorTitle" *ngFor="let item of titleDefault">{{item.name}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="table-content">
+                                    <div class="table-list">
+                                        <div *ngFor="let item of location">
+                                            <p [style.color]="TcolorText">
+                                                {{item.name}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="table-list">
+                                        <div *ngFor="let item of material">
+                                            <p [style.color]="TcolorText">{{item.name}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="table-list">
+                                    <div *ngFor="let item of quantity">
+                                        <p [style.color]="TcolorText">{{item.name}}</p>
+                                    </div>
+                                </div>
+                                   
+                                </div>
+                            </div>
 
                       

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProIconsComponent } from './pro-icons.component';
+import { PcSaveComponent } from './pc-save.component';
 
-describe('ProIconsComponent', () => {
-  let component: ProIconsComponent;
-  let fixture: ComponentFixture<ProIconsComponent>;
+describe('PcSaveComponent', () => {
+  let component: PcSaveComponent;
+  let fixture: ComponentFixture<PcSaveComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProIconsComponent ]
+      declarations: [ PcSaveComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProIconsComponent);
+    fixture = TestBed.createComponent(PcSaveComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

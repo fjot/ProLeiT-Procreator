@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from "@angular/common";
+
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,7 +14,8 @@ import { HomeComponent } from './components/home/home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

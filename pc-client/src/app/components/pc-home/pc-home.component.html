@@ -1,7 +1,10 @@
 <pc-nav></pc-nav>
 <!-- Modal -->
-<pro-icons *ngIf="isVisibleIcons"></pro-icons>
-<div *ngIf="isVisibleIcons" class="pc-modal-close-button" (click)="clickCloseModal($event)">
+<pc-save *ngIf="isVisibleSave"></pc-save>
+<pc-deploy *ngIf="isVisibleDeploy"></pc-deploy>
+<pc-icons *ngIf="isVisibleIcons"></pc-icons>
+<pc-qr *ngIf="isVisibleQR"></pc-qr>
+<div *ngIf="isVisibleIcons || isVisibleQR" class="pc-modal-close-button" (click)="clickCloseModal($event)">
     <img src="../../../assets/img/delete-button.svg" alt="" width="10%">
 </div>
 <div class="container-home">
@@ -91,9 +94,9 @@
         <div class="menu-buttons">
             <ul class="menu-button">
                 <li class="menu-item">
-                    <a class="menu-link" (click)="save()"><i class="material-icons">save</i></a>
+                    <a class="menu-link" (click)="save($event)"><i class="material-icons">save</i></a>
                 </li>
-                <li class="menu-item" (click)="deploy()">
+                <li class="menu-item" (click)="deploy($event)" disable>
                     <a class="menu-link"><i class="material-icons">backup</i></a>
                 </li>
             </ul>
@@ -117,10 +120,11 @@
 
 
                     <div *ngFor="let item of navigationCopy" cdkDrag [cdkDragData]="basic">
-                       <nav>
-                       
+                        <nav>
+
                             <!-- <pc-navigation [title]='item.title' (click)="selectedNavigation($event)"></pc-navigation> -->
-                            <div id="navigation_default" (click)="selectedNavigation($event)">
+                            <div id="navigation_default" (click)="selectedNavigation($event)"
+                                [style.backgroundColor]="NcolorBackground">
                                 <!-- Unnamed (Shape) -->
                                 <div id="u288" class="ax_default icon">
                                     <img id="u288_img" class="img " src="../../../assets/img/u288.svg" />
@@ -132,7 +136,7 @@
                                 <div id="u313" class="ax_default label" data-label="Fertig">
                                     <div id="u313_div" class=""></div>
                                     <div id="u313_text" class="text">
-                                        <span>{{titleNavigation}}</span>
+                                        <span [style.color]="NcolorText">{{titleNavigation}}</span>
                                     </div>
                                 </div>
 
@@ -144,7 +148,7 @@
                                     </div>
                                 </div>
                             </div>
-                     
+
                         </nav>
                     </div>
                 </div>
@@ -156,17 +160,18 @@
                     <p *ngIf="isVisibleHeaderText">Header (optional)</p>
                     <div *ngFor="let item of navigationHeaderCopy" cdkDrag [cdkDragData]="header">
                         <!-- <pc-header [title]='item.title' (click)="selectedHeader($event)"></pc-header> -->
-                       <nav>
-                            <div id="header_default" [title]='item.title' (click)="selectedHeader($event)">
-                                    <div id="u270">
-                                        <div id="u270_div"></div>
-                                        <div id="u270_text" class="text">
-                                            <span>{{titleHeader}}</span>
-                                        </div>
+                        <nav>
+                            <div id="header_default" [title]='item.title' (click)="selectedHeader($event)"
+                                [style.backgroundColor]="HcolorBackground">
+                                <div id="u270">
+                                    <div id="u270_div"></div>
+                                    <div id="u270_text" class="text">
+                                        <span [style.color]="HcolorText">{{titleHeader}}</span>
                                     </div>
                                 </div>
-                            </nav>
-                   
+                            </div>
+                        </nav>
+
                     </div>
                 </div>
 
@@ -176,33 +181,37 @@
                     <p *ngIf="isVisibleTableText">Content</p>
                     <div *ngFor="let item of tableCopy" cdkDrag [cdkDragData]="table" (click)="selectedTable($event)">
                         <!-- <pc-table></pc-table> -->
-                      <body>
-                            <table
-                            style="width:100%; margin-top: 20px; text-align: center; font-family: Arial; padding-left: 20px;">
-                            <tr>
-                                <th>{{label1}}</th>
-                                <th>{{label2}}</th>
-                                <th>{{label3}}</th>
-                            </tr>
-                            <tr>
-                                <td>Label</td>
-                                <td>Label</td>
-                                <td>Label</td>
-                            </tr>
-                            <tr>
-                                <td>Label</td>
-                                <td>Label</td>
-                                <td>Label</td>
-                            </tr>
-                            <tr>
-                                <td>Label</td>
-                                <td>Label</td>
-                                <td>Label</td>
-                            </tr>
-                        </table>
+                        <body>
+                        <div class="table-header-title"
+                            [style.background]="TcolorBackground">
+                            <div class="table-header-1">
+                                <div class="table-header-2">
+                                    <p [style.color]="TcolorTitle" *ngFor="let item of titleDefault">{{item.name}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="table-content">
+                                <div class="table-list">
+                                    <div *ngFor="let item of location">
+                                        <p [style.color]="TcolorText">
+                                            {{item.name}}</p>
+                                    </div>
+                                </div>
+                                <div class="table-list">
+                                    <div *ngFor="let item of material">
+                                        <p [style.color]="TcolorText">{{item.name}}</p>
+                                    </div>
+                                </div>
+                                <div class="table-list">
+                                <div *ngFor="let item of quantity">
+                                    <p [style.color]="TcolorText">{{item.name}}</p>
+                                </div>
+                            </div>
+                               
+                            </div>
+                        </div>
+                        </body>
 
-                      </body>
-                    
                     </div>
                 </div>
             </div>
@@ -246,7 +255,26 @@
                 <p>Source</p>
                 <pc-dropdown-list [data]="datasource" (change)="somethingChanged($event)"></pc-dropdown-list>
             </div>
+            <div class="html-element-custom" *ngIf="isVisibleTable">
+                <div class="element-input">
+                    <p>Title 1</p>
+                    <pc-dropdown-list [data]="data" (change)="valueChanged($event)"></pc-dropdown-list>
+                </div>
+            </div>
+            <div class="html-element-custom" *ngIf="isVisibleTable">
+                <div class="element-input">
+                    <p>Title 2</p>
+                    <pc-dropdown-list [data]="data" (change)="valueChanged($event)"></pc-dropdown-list>
+                </div>
+            </div>
+            <div class="html-element-custom" *ngIf="isVisibleTable">
+                <div class="element-input">
+                    <p>Title 3</p>
+                    <pc-dropdown-list [data]="data" (change)="valueChanged($event)"></pc-dropdown-list>
+                </div>
+            </div>
         </div>
+
         <div class="secciones-title">
             <p>Style</p>
         </div>
@@ -259,7 +287,15 @@
                 </div>
                 <div class="element-input">
                     <p>Icon</p>
-                    <input type="text" (click)="selectedIcons($event)">
+                    <input type="text" [value]="imgNavigation" [(ngModel)]="imgNavigation" (click)="selectedIcons($event)">
+                </div>
+                <div class="element-input">
+                    <p>Color</p>
+                    <input type="text" [(ngModel)]="NcolorText">
+                </div>
+                <div class="element-input">
+                    <p>Background</p>
+                    <input type="text" [(ngModel)]="NcolorBackground">
                 </div>
             </div>
 
@@ -268,25 +304,32 @@
                     <p>Text</p>
                     <input type="text" [(ngModel)]="titleHeader">
                 </div>
-            </div>
-            <div class="html-element-custom" *ngIf="isVisibleTable">
                 <div class="element-input">
-                    <p>Label</p>
-                    <input type="text" [(ngModel)]="label1">
+                    <p>Color</p>
+                    <input type="text" [(ngModel)]="HcolorText">
+                </div>
+                <div class="element-input">
+                    <p>Background</p>
+                    <input type="text" [(ngModel)]="HcolorBackground">
                 </div>
             </div>
+
             <div class="html-element-custom" *ngIf="isVisibleTable">
                 <div class="element-input">
-                    <p>Label</p>
-                    <input type="text" [(ngModel)]="label2">
+                    <p>Color Title</p>
+                    <input type="text" [(ngModel)]="TcolorTitle">
+
                 </div>
-            </div>
-            <div class="html-element-custom" *ngIf="isVisibleTable">
                 <div class="element-input">
-                    <p>Label</p>
-                    <input type="text" [(ngModel)]="label3">
+                    <p>Color Content</p>
+                    <input type="text" [(ngModel)]="TcolorText">
+                </div>
+                <div class="element-input">
+                    <p>Background</p>
+                    <input type="text" [(ngModel)]="TcolorBackground">
                 </div>
             </div>
+
 
         </div>
 

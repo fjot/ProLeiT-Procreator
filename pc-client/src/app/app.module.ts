@@ -13,7 +13,10 @@ import { PcNavComponent } from './components/pc-nav/pc-nav.component';
 import { PcLoginComponent } from './components/pc-login/pc-login.component';
 import { HtmlElementsModule } from './components/html-elements/html-elements.module';
 import { PcAccountComponent } from './components/pc-account/pc-account.component';
-import { ProIconsComponent } from './components/pro-icons/pro-icons.component';
+import { PcIconsComponent } from './components/pc-icons/pc-icons.component';
+import { PcDeployComponent } from './components/pc-deploy/pc-deploy.component';
+import { PcSaveComponent } from './components/pc-save/pc-save.component';
+import { PcQrComponent } from './components/pc-qr/pc-qr.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { ProIconsComponent } from './components/pro-icons/pro-icons.component';
     PcNavComponent,
     PcLoginComponent,
     PcAccountComponent,
-    ProIconsComponent,
+    PcIconsComponent,
+    PcDeployComponent,
+    PcSaveComponent,
+    PcQrComponent,
   ],
   imports: [
     BrowserModule,

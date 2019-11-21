@@ -18,14 +18,15 @@ class Api {
             createProject().then(() => {
                setTimeout(() => {
                 createComponent();
-               }, 5000);
+                deleteContent();
+               }, 3000);
             });
         });
-        app.get('/delete-content', (req, res) => {
-            deleteContent().then(() => {
-                console.log('done!');
-            });
-        });
+        // app.get('/delete-content', (req, res) => {
+        //     deleteContent().then(() => {
+        //         console.log('done!');
+        //     });
+        // });
         app.get('/build', (req, res) => {
             buildProject().then(() => {
                 console.log('done!');
