@@ -24,7 +24,10 @@ export class HomeComponent implements OnInit {
   od: number = 0;
   //aqui
 
-
+  objectKeys = Object.keys;
+  
+  displayColumns = ['Location'];
+  
   storageLocation = [
     {
       Location: 'Tank-01',

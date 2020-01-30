@@ -352,6 +352,8 @@ export class PcHomeComponent implements OnInit, OnDestroy {
     }
   }
 
+  
+
   deploy() {
     if (event) {
       this.isVisibleDeploy = true;
